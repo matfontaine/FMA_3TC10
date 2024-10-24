@@ -1,0 +1,695 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>FMA_3TC10 - Télécom Paris</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/telecom.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/github.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section class="cover" data-background="figures/background-blur.png"  data-state="no-title-footer no-progressbar has-dark-background">
+
+					<h2 id='coverh2'>Analyse fonctionnelle</h2>
+					<h1  id='title_seminar'> FMA_3TC10</h1>
+					<h3><a href="https://matfontaine.github.io/FMA_3TC10", id='github_url'>matfontaine.github.io/FMA_3TC10</a></h3>
+					<p id='coverauthors'>
+						Mathieu FONTAINE<br />
+						mathieu.fontaine@telecom-paris.fr
+					</p>
+					<p id="date">
+					Octobre 2024-Janvier 2025
+					</p>
+					<p>
+					<img src="css/theme/img/logo-Telecom.svg" id="telecom" class="logo" alt="">
+					<aside class="notes">
+						<ul><li>We will consider historical audio source separation technique</li>
+									<li>e.g. no deep learning extensions or nonnegative matrix factorization</li>
+								<li>the Handbook for that course is available on the moodle (PAM/Audio_source_separation)</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- Outline of the presentation -->
+				<section>
+					<h1> Organisation du module (1/2)</h1>
+					<h2>Evaluation</h2>
+
+					<h3> Note de contrôle continu  (CC, /4)</h3>
+					<ul>
+								<li>une note sur l'assiduité (présence en classe)</li>
+								<li>4 DM seront donnés. 1/4 sera corrigé à chaque fois (les noms seront donnés à l'avance)</li>
+							</ul>
+
+						</li>
+					</ul></br></br>
+					<h3>Examen Final (EF, /16)</h3>
+					<ul style="margin-bottom:1em;">
+						<li>Polycopiés et notes de cours autorisés</li>
+						<li>Durée : 3h</li>
+					</ul>
+					<p class="remarque"> EF + CC = Note finale /20 pour le module</p>
+
+					<h3>Petit quizz (non noté)</h3>
+					<ul style="margin-bottom:1em;">
+						<li>De temps à autre, j'essaierai de mettre en place des wooclap</li>
+						<li>dans le but que vous vous auto-évaluez sur votre compréhension</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1> Organisation du module (2/2)</h1>
+					<h2>Programme prévisionnel par tranche horaire (TH)</h2>
+					<ul>
+						<li>$\mathbb{R}$ vs. $\mathbb{Q}$ (motivations)  & convention (TH 1)</li>
+						<li>Chapitre EVN (topologie de base, définition) (TH 2)</li>
+						<li>TD EVN, Topologie etc. (TH 3)</li>
+						<li>Chapitre EVN (TH 4-5)</li>
+						<li>Chapitre $\mathcal{L}^p$ (convergence dominé, complétude etc.)  & TD (TH 6-8)</li>
+						<li>Chapitre $\mathcal{L}^p$ (convolution, règles de calculs etc.) & TD (TH 9-11)</li>
+						<li>Chapitre Hilbert (definition, identités, projection etc.) & TD (TH 12-14)</li>
+						<li>Chapitre Hilbert (Bases de Fourier)  & TD Base de Fourier (TH 15-16)</li>
+						<li>Fourier sur $\mathbb{R}$ & TD (TH 17-20)</li>
+						<li>Régularité et classe de Schwartz (Régularité, Stabilité de S) (TH 21)</li>
+						<li>TD classe de Schwartz et/ou révisions (TH 22)</li>
+					</ul>
+					</section>
+
+					<section>
+						<h1>Matériel et activités</h1>
+						<h2>Supports</h2>
+						<ul>
+							<li>Le polycopié de MDI103</li>
+							<li> Des exercices corrigés</li>
+
+      					</ul>
+						<h2>Activités</h2>
+						<ul>
+							<li>Diaporama résumant le contenu du cours (quelques démos au tableau)</li>
+							<li>Travaux dirigés sur des exercices (à la maison ou traité directement en cours)</li>
+							<li>DM </li>
+							<li>Petit QCM Wooclap pendant le cours (non noté)</li>
+							<!-- <li>Petit QCM pendant le cours (non noté)
+							   </br>$\quad \rightarrow$ Matériel nécessaire : <b>Téléphone ou ordinateur</b> (test juste après)
+							</li> -->
+						</ul>
+						</section>
+
+					<!-- <section>
+						<h1> QCM Wooclap</h1>
+						<iframe style="pointer-events: none;" frameborder="0" height="500" width="100%" mozallowfullscreen src="https://app.wooclap.com/events/MDI104GRP2/"></iframe>
+						<ul>
+							<li>www.wooclap.com/MDI104GRP2 ou  @MDI104GRP2 par SMS et 1,2,3 ou 4 etc.</li>
+							<li>Les questions sont limitées par le temps <b>(n'est pas pris en compte dans la note)</b></li>
+						</ul>
+					</section> -->
+
+				<!-- Introduction -->
+				<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
+					<h2 id='coverh2'>I - $\mathbb{R}$ vs. $\mathbb{Q} $ : une motivation</h2>
+
+				</section>
+
+				<section>
+					<h1>Ensemble des rationnels $\mathbb{Q}$ et propriétés (1/2) </h1>
+					<ul>
+						<li> $\mathbb{Q}$ est un corps commutatif, totalement ordonné (on peut comparer deux élement) et archimédien 
+							$ \\ \quad \rightarrow$ si $p\leq q$ alors $\exists n \in \mathbb{N}$ tel que $np \geq q$
+						</li>
+						<p class="remarque"> <b>Problème:</b> $\mathbb{Q}$ est dénombrable et donc comporte "des trous".
+							 Problématique pour assurer la convergence
+						</p>
+					</ul>
+					<div class="exemple"> 
+					<div id="title"> Définition [convergence et suite de Cauchy dans $\mathbb{Q}$] </div> 
+					Soit $(u_n)_n$ un suite dans $\mathbb{Q}$. On dit alors que $u_n \to l$ si:
+							<center>$$
+							\forall \epsilon > 0, \exists N \in \mathbb{N}, \forall n \geq N,~ |u_n -l| \leq \epsilon
+							$$</center>
+					On dit que $u_n$ est une <b> suite de Cauchy </b> si:
+
+									<center>$$
+							\forall \epsilon > 0, \exists N \in \mathbb{N}, \forall n \geq N,~ |u_n -u_N| \leq \epsilon
+							$$</center>
+					ou de manière équivalente:
+					<center>$$
+						\forall \epsilon > 0, \exists N \in \mathbb{N}, \forall n,m \geq N,~ |u_m -u_n| \leq \epsilon
+						$$</center>
+					</div>				
+				</section>
+
+				<section>
+					<h1>Ensemble des rationnels $\mathbb{Q}$ et propriétés (2/2) </h1>
+					<div class="exemple"> 
+						<div id="title"> Propriétés [suite de Cauchy dans $\mathbb{Q}$] </div> 
+						On a les implications suivantes: 
+						<center>$$
+							"suite convergente dans $\mathbb{Q}$" $\implies$ "suite de Cauchy dans $\mathbb{Q}$" $\implies$ "suite bornée dans $\mathbb{Q}$"
+						$$</center>
+
+						</div>		
+						<p><b>Preuve:</b> Au tableau.</p>
+						<p><b>Remarque:</b> Une suite bornée n'est pas forcément de Cauchy (donnez un exemple)</p>
+						<p class="affirmation"> <b>Question:</b> Est-ce qu'une suite de Cauchy dans $\mathbb{Q}$ est convergente ?
+					   </p>
+						
+						
+				</section>
+
+				<section>
+				<h1>Problème de convergence dans $\mathbb{Q}$</h1>
+				Prenons par exemple la suite: 
+				<center>
+				$$
+				u_n=\sum_{k=1}^{n}\frac{1}{k!}
+				$$
+				</center>
+				Il est clair que cette suite est dans $\mathbb{Q}$ et $u_n \to e \notin \mathbb{Q}$.
+				<p class="remarque">Il s'agit pourtant d'une suite de Cauchy dans $\mathbb{Q}$</p>
+				Exercice (à compléter à la maison)
+				<ul>
+				<li>Montrer que pour  $m < n$ 
+					on a $|u_m -u_n| \leq \left(\frac{1}{2}\right)^{m-1}$
+				$\\ \quad \rightarrow$ indice: utiliser que $\forall k \geq 2, k! \geq 2^{k-1}$ 
+				</li>
+				<li>
+					prenez $\epsilon >0$ et $N$ tel que $\epsilon \geq \left(\frac{1}{2}\right)^{k-1}, \forall k \geq N$ et conclure.
+				</li>
+				</ul>
+				<p class="affirmation">
+				Par conséquent, il faut définir $\mathbb{Q}$ et toutes ces limites de Cauchy. C'est ainsi que Cantor & Méray ont construit $\mathbb{R}$.
+				</p>
+				</section>
+				<section>
+					<h1>Construction de $\mathbb{R}$</h1>
+					On définit la relation d'équivalence (à prouver) pour des suites de Cauchy $(u_n), (v_n)$ dans $\mathbb{Q}$:
+					<center>$$
+					u_n \sim v_n \Leftrightarrow u_n-v_n \to 0
+					$$</center>
+					Si on définit $\mathcal{C}_{\mathbb{Q}} = \{\text{ensemble des suites de Cauchy dans } \mathbb{Q}\}$ alors:
+					<center>$$
+					\mathbb{R} = \mathcal{C}_{\mathbb{Q}} / \sim
+					$$</center>
+					On peut aussi montrer des propriétés comme $\mathbb{Q}$ est dense dans $\mathbb{R}$ (on dira que <b>$\mathbb{R}$ est séparable</b>), mais également :
+					<p></p>
+					<div class="exemple"> 
+						<div id="title"> Théorème [convergence des suite de Cauchy dans $\mathbb{R}$] </div> 
+						Toute suite de Cauchy dans $\mathbb{R}$ converge. On dira alors que <b>$\mathbb{R}$ est complet</b>.
+
+						</div>		
+						<p><b>Preuve:</b> Si le temps le permet ...</p>
+						<p><b>Remarque:</b> On verra que ($\mathbb{R}$, |.|) est un espace vectoriel normé complet (on dit aussi <b>espace de Banach</b>)</p>
+					</section>
+					
+				<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
+					<h2 id='coverh2'>II - Notations & conventions</h2>
+
+				</section>
+				<section>
+				<h1> $\sup, \inf, \min, \max$ dans $\overline{\mathbb{R}}$</h1>
+				<ul>
+				<li>On rappelle que $\overline{\mathbb{R}} = \mathbb{R} \cup \{\pm \infty\}, \overline{\mathbb{R}_+} = \mathbb{R} \cup \{+\infty\}$
+					 et $\overline{\mathbb{R}_-} = \mathbb{R} \cup \{-\infty\}$ 
+					$\\ \rightarrow$ intérêt: on s'affranchi la distinction entre limite/sup/inf finis et limite/sup/inf qui sont infinis.
+
+				</li>
+				<li>
+					$I \subset \overline{\mathbb{R}}, x = \sup I \Leftrightarrow \underbrace{(\forall y\in I \implies y \leq x)}_{\text{x est un majorant}} \text{ et } \underbrace{(I \ni y< x \implies \exists z \in I, z > y)}_{\text{c'est strictement le plus petit majorant}} $
+				</li>
+				<li>
+					$I \subset \overline{\mathbb{R}}, x = \inf I \Leftrightarrow \underbrace{(\forall y\in I \implies y \geq x)}_{\text{x est un minorant}} \text{ et } \underbrace{(I \ni y > x \implies \exists z \in I, z < y)}_{\text{c'est strictement le plus grand minorant}} $
+				</li>
+				<li>$\inf \emptyset = + \infty; \sup \emptyset = - \infty$ </li>
+				<li>Si $\sup I \in I, \inf I \in I$ resp. alors $\sup I = \max I, \inf I = \min I$ resp.</li>
+				<li>le $\max,\min$  entre deux nombres $a,b$ sera noté $a \lor b $ et $a \land b$ resp.</li>
+				</ul>
+			</section>
+			<section>
+				<h1>$\sup, \inf, \lim\inf, \lim\sup$ de suites</h1>
+				On prend $u=(u_n)$ une suite dans $\overline{\mathbb{R}}$.
+				<ul>
+					<li>si $(u_n)$ converge on écrira alors $\lim_{n\to \infty}u_n \text{ ou } \lim_{n} u_n \text{ ou } \lim{u}$</li>
+					<li>quand $(u_n)$ est monotone convergente de limite $\ell$ on écrira $u_n \uparrow \ell$ ou $u_n \downarrow \ell$ si $(u_n)$ croissante ou décroissante resp. </li>
+					<li>$\forall I \subset \mathbb{N},~ \underset{n \in I}{\sup}~ u_n = \sup\{u_n, n \in I\}$ (idem pour $\inf$)</li>
+					<li>On définit également: $\underset{n \to +\infty}{\lim \inf}~u_n = \underset{n}{\lim}\underset{p\geq n}{\inf}~u_p;\quad \underset{n \to +\infty}{\lim \sup}~u_n = \underset{n}{\lim}\underset{p\geq n}{\sup}~u_p$</li>
+					<li>($(u_n) \text{ converge } \Leftrightarrow \lim\sup u  = \lim\inf u$) et $\lim u = \lim\sup u = \lim\inf u$</li>
+				</ul>
+				<p></p>
+				<center><figure>
+					<img src="example_sup_inf.png", width="80%">
+					<caption>
+						<center> <em>Illustration sur un ensemble $I=\{0, \dots, 20\}$</em> </center>
+					</caption>
+				</figure>
+			</center>
+			</section>
+			<section>
+				<h1>sommes finies et infinies</h1>
+				On note $(x_i)_{i\in I}$ des éléments de $\overline{\mathbb{R}}$ avec $I$ quelconque.
+				<ul>
+					<li>si $\mathrm{card}(I) < \infty$ alors $\sum_{i \in I} x_i$ est bien définie si $(x_i)$ ne prend pas des valeurs dans $-\infty$ et $+\infty$.</li>
+					<li>Sinon, pour $x_i \in \overline{\mathbb{R}}_+, \sum_{i \in I}x_i = \sup \left\{ \sum_{i \in J} x_i \mid J\subset I, \mathrm{card}(J) < \infty\right\}$</li>
+					<li>Les parties négatives de $x \in \overline{\mathbb{R}}$ sont notés $x_+$ et $x_-$ resp.</li>
+					<li>si $\sum_{i\in I}x_{i+}, \sum_{i\in I}x_{i-} < \infty$ alors $(x_i)$ est <b>absolument sommable</b> et 
+						<center>$$
+						\sum_{i} x_i = \sum_{i\in I}x_{i+} - \sum_{i\in I}x_{i-}
+						$$
+					</center>
+					</li>
+					<li>si $I$ dénombrable et $I=\bigcup_{n} \{i_n\}$ on a pour $x_i$ dans $\overline{\mathbb{R}}_{+}$ ou abs. sommable 
+						<center>$$
+						\sum_{i \in I}x_i = \lim_{p} \sum_{n=0}^{p}x_{i_n}
+						$$</center>
+					</li>
+					<li>en particulier pour $I=\mathbb{N}$ on a les "séries classiques" (CV absolue etc.)</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Extension aux fonctions et rappels de convergences</h1>
+				On considère des fonctions $(f_n)$ à valeur dans $\overline\mathbb{R}$ et définies sur le même ensemble $X$.
+
+				<ul>
+					<li>On a alors les résultats précédents mais ponctuellement</li>
+					<li>$f\geq 0$ signifiera que $f(x)\geq 0, \forall x \in X$</li>
+					<li>$(f_n)$ décroissante $ \implies \forall x \in X,~(f_n(x))_n$ décroissante (idem croissant)</li>
+					<li>$f_+$ signifie $f_+(x)= \max(f(x),0), \forall x \in X$</li>
+					<li>$f_n \downarrow g, g_n \uparrow g$ signifie $ \forall x \in X, f_n(x) \uparrow g(x), f_n(x) \downarrow g(x)$ resp. </li>
+					<li>$\sum_{n \in \mathbb{N}}f_n = f \Leftrightarrow \forall x \in X,~ \sum_{n \in \mathbb{N}}f_n(x) = f(x)$</li>
+					<li>Dans les deux derniers points, on parle de CV ponctuelle</li>
+					<li>Critère de Cauchy: si les suites sont de Cauchy $(|f_n(x) - f_m(x)| < \epsilon$ elles convergent </li>
+					<li>idem critère de Cauchy pour les séries 
+						$$\forall m>n>N, |f_m(x) + \dots + f_n(x)| < \epsilon \implies \text{la série converge} $$</li>
+				</ul>
+				On définit dans le cas d'une norme $\Vert.\Vert$ la norme infinie $\Vert f\Vert_{\infty} = \underset{x\in X}{\sup}(\Vert f(x)\Vert)$
+				<ul>
+					<li>CV uniforme de $f_n$ vers $f_{} \implies \Vert f_n - f\Vert_{\infty} \to 0$ (marche pour les séries)</li>
+					<li>CV normale: $\sum \Vert f_n\Vert_{\infty}$ CV</li>
+					<li> CV normale $\implies$ CV uniforme $\implies$ CV ponctuelle</li>
+				</ul>
+			</section>
+			<section>
+			<h1>Rappels : fonction indicatrice, image réciproque</h1>
+			Soit $A \subset X$ un sous-ensemble de $X$. $\\$
+			<ul>
+				<li>On note ici la <b>fonction indicatrice de $A$</b>, $\mathfrak{1}_A$ définie par
+					<center>
+					$$
+					\mathfrak{1}_A(x) = 
+					\begin{cases}
+					1 & \text{si } x \in A \\
+					0 & \text{sinon}
+					\end{cases}
+					$$
+				</center>
+				</li>
+				<li>
+					pour $f:X \to Y, g:X \to Y$ et $B \subset Y$ on note <b>l'image réciproque de $B$ par $f$, $f^{-1}(B)$:</b>
+				<center>
+					$$
+					\begin{aligned}
+					\{f \in B\}=f^{-1}(B) =& \{x \in X \mid f(x) \in B\} \\
+					\{f =y\}=f^{-1}(y) =& \{x \in X \mid f(x)=y\} \\
+					\{f = g\} =& \{x \in X \mid f(x)=g(x)\} \\
+					\mathfrak{1}_{\{f=c\}}(x) =&
+					\begin{cases}
+					1 & \text{si } f(x) =c \\
+					0 & \text{sinon}
+					\end{cases}
+					\end{aligned}
+					$$
+				</center>
+				</li>
+
+			</ul>
+			</section>
+			<section>
+				<h1>Opération sur les ensembles (1/2)</h1>
+				On prend $A=(A_n)_{n \in I} \subset X$ et $I$ quelconque. On note:<p></p>
+						<center>
+						$$\bigcup_{n\in I}A_n = \{x \in X \mid \exists n \in I, x \in A_n\}; \quad 
+						\bigcap_{n\in I}A_n = \{x \in X \mid \forall n \in I, x \in A_n\}$$
+					</center>
+					Quand $I=\mathbb{N}$, on définit:
+					<center>
+					$$\underbrace{\underset{n \to \infty}{\lim \inf} A_n =
+					\bigcup_{n} \bigcap_{p \geq n}A_p}
+					_{x \text{ qui appartiennent à tous les } A_n \text{ à partir d'un certain rang}};
+					~ \underbrace{\underset{n \to \infty}{\lim \sup} A_n =
+					\bigcap_{n} \bigcup_{p \geq n}A_p}
+					_{x \text{ qui appartiennent à une infinité de }A_n }$$
+				</center>
+
+				Si $(A_n)$ est monotone on notera:
+				<center>
+					$$
+					A_n \uparrow B \Leftrightarrow A_{n} \subset A_{n+1} \text{ et } B=\bigcup_{n}(A_n);
+					 ~ A_n \downarrow B \Leftrightarrow A_{n} \supset A_{n+1} \text{ et } B=\bigcap_{n}(A_n);
+					$$
+				</center>
+				<center><figure>
+					<img src="figures/images/suite_croi_dec.png", width="80%">
+					<caption>
+						<center> <em>Illustration de $A_n \downarrow B$ et $A_n \uparrow B$ </em> </center>
+					</caption>
+				</figure>
+			</center>
+				</section>
+
+				<section>
+					<h1>Opération sur les ensembles (2/2)</h1>
+					On note également $A_1 \times \dots \times A_n$ l'<b>ensemble produit</b> des $n$-uplets:
+
+						<center>
+							$$A_1 \times \dots \times A_n = 
+							\{(x_1, \dots, x_n) \mid x_i \in A_i;~ \forall i \in \{1, \dots, n\}\}
+							$$
+							</center>
+					et plus généralement même pour $I$ non dénombrable on notera:
+					
+					<center>
+						$$\prod_{i \in I}A_i = 
+						\{(x_i)_{i \in I} \mid x_i \in A_i;~ \forall i \in I\}
+						$$
+						</center>
+					</section>
+					<section>
+						<h1>Rappels de fonction infiniment dérivables</h1>
+						on prend $\Omega$ un ouvert de $\mathbb{R}^p$ et $f:\Omega \to \mathbb{R}^q$.<p></p>
+						<ul>
+							<li>Regardez les conventions pour la différentiabilité</li>
+							<li>On note $\mathscr{C}^{n}(\Omega, \mathbb{R^q})$ ou $\mathscr{C}^{n}(\Omega)$ quand $q=1$ ou $\mathscr{C}^n$
+								les fonctions continûment différentiables sur $\Omega$ et à  valeurs dans $\mathbb{R}^q$
+							</li>
+							<li>quand $n=0$ on notera $\mathscr{C}$ l'espace des fonctions continues</li>
+							<li>$\mathscr{C}_0 = \{f \in \mathscr{C}(\mathbb{R}^N) \mid f(x) \underset{\Vert x \Vert \to \infty}\to 0\}$</li>
+							<li>$\mathscr{C}_c = \{f \in \mathscr{C}(\mathbb{R}^N) \mid \exists U \text{un interval borné }, \forall x \notin U, f(x) = 0\} $</li>
+							<li>$\mathscr{C}^{\infty}$ l'espace des fonctions infiniment dérivables</li>
+						</ul>
+						On rappelle que l'ordre des dérivées partielles n'a pas d'importance pour une fonction dérivable à l'ordre "ordre de la dérivée partielle" (Théorème de Schwarz)
+					</section>
+
+					<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
+						<h2 id='coverh2'>III - Topologie de base et définitions</h2>
+	
+					</section>
+					<section>
+						<h1>Espace métrique</h1>
+						<div class="exemple"> 
+							<div id="title"> Définition [Espace métrique] </div> 
+							Soit $X$ un ensemble et $d:X\times X \to \mathbb{R}_+$. On dira que $(X,d)$ est un espace métrique (EM) et $d$ si on a les propriétés suivantes:
+							<ol>
+								<li> $\hspace{-1cm}\forall x,y \in X, d(x,y)=0 \Leftrightarrow x=y \qquad \qquad ~ \texttt{(séparation)}$</li>
+								<li>$\hspace{-1cm}\forall x,y \in X, d(x,y)=d(y,x) \qquad \qquad \qquad \texttt{(symétrie)}$</li>
+								<li>$\hspace{-1cm}\forall x,y,z \in X, d(x,z) \leq d(x,y) + d(y,z) \quad \texttt{(inégalité triangulaire)}$</li>
+							</ol>
+	
+							</div>
+							<p><b>Remarque :</b> On a également la "seconde inégalité triangulaire"
+							<center>$$
+								\forall x,y,z \in X, |d(x,y) - d(y,z)| \leq d(x,z)
+							$$</center>
+							<b>Preuve:</b> rapide au tableau
+							</p>
+					</section>
+
+					<section>
+						<h1>Ouverts, boules avec une métrique</h1>
+						<div class="exemple"> 
+							<div id="title"> Définition [Boule ouverte et fermé] </div> 
+							La boule ouverte  noté $B$ (resp. B_f pour fermé) de centre $x$ et de rayon $r>0$ est :
+							<center>
+								$$
+								\begin{aligned}
+								B(x,r) &= \{y \in X \mid d(x,y) <  r\} \\
+								B_f(x,r) &= \{y \in X \mid d(x,y) \leq  r\}
+								\end{aligned}
+								$$
+							</center>
+	
+							</div>
+
+							<p>On définit alors les ensembles ouverts </p>
+							<div class="exemple"> 
+								<div id="title"> Définition [Ouvert] </div> 
+								Soit $(X,d)$ un EM. Un ouvert $A\subset X$ est défini par :
+								<center>$$
+								\forall x \in A, \exists r >0, B(x,r) \subset A
+								$$</center>
+								</div>
+								<p><b>Remarque:</b> $B(x,r)$ est bien un ouvert (preuve au tableau)</p>
+					</section>
+					<section>
+						<h1>Topologie d'un espace métrique</h1>
+						Si on note  $\mathscr{T}$ l'ensemble des ouverts, $(X, \mathscr{T})$ induit par sa métrique $d$ défini  un espace topologique
+						<div class="exemple"> 
+							<div id="title"> Proposition [Topologie induite par les ouverts] </div> 
+							Les ouverts de $X$ vérifient les propriétés suivantes :
+							<ol>
+								<li>L'ensemble vide $\emptyset$ est un ouvert</li>
+								<li>$X$ est un ouvert</li>
+								<li> Pour $I$ quelconque, $(A_i)_{i \in I}$ des ouverts alors $\bigcup_{i}A_i$ est un ouvert</li>
+								<li>Si $\mathrm{card}~ I<  \infty, \bigcap_{i} A_i$ est un ouvert</li>
+							</ol>
+							</div>
+							<p><b>Preuve:</b> Au tableau</p>
+							<p><b>Remarque:</b> l'espace métrique change en fonction de la distance (cf. polycopié)</p>
+					</section>
+					<section>
+						<h1>Caractérisation des ouverts et ensembles fermés</h1>
+						<div class="exemple"> 
+							<div id="title"> Proposition [caractérisation des ouverts] </div> 
+							Soit $(X,d)$ un espace métrique et $\mathscr{O}$ un ouvert. Alors :
+							<center>
+								$$
+								\mathscr{O} = \bigcup_{i} B(x_i,r_i)
+								$$
+							</center>
+							</div>
+							<p><b>Preuve:</b> esquisse au tableau</p>
+
+							<p>On définit également les fermés $F$ comme le complémentaire d'un ouvert. C'est à dire:
+								<center>
+									$\forall x \notin F, \exists r >0, B(x,r) \cap A = \emptyset$
+								</center>
+							</p>
+							On en déduit (car le complémentaire d'une intersection est une union et vice-versa)
+							que :
+							<div class="exemple"> 
+								<div id="title"> Proposition [sur les fermés] </div> 
+								On a les résultats suivants :
+								<ol>
+									<li>$\emptyset, X$ sont des fermés</li>
+									<li> Une intersection quelconque de fermé est un fermé</li>
+									<li>Une union finie de fermés est un fermé</li>
+								</ol>
+								</div>
+
+						
+					</section>
+
+					<section>
+						<h1>Fermeture, intérieur</h1>
+						<div class="exemple"> 
+							<div id="title"> Définition [Fermeture, Intérieur] </div> 
+							Soit $A$ un sous ensemble d'un EM $(X,d)$. On appelle <b>fermeture de $A$</b> (noté $\overline{A}$)
+							le plus petit fermé contenant A : 
+							<center>
+								$$
+								\overline{A} = \bigcap_{O \in \mathscr{T}: A \subset O^{\complement}} O^{\complement}
+								$$
+							</center>
+							L'<b>intérieur de $A$</b> (noté $\mathring{A}$) est le plus grand ouvert inclus dans $A$:
+							<center>
+								$$
+								\mathring{A} = \bigcup_{O \in \mathscr{T}: O \subset A} O
+								$$
+							</center>
+							</div>
+
+							<p><b>Remarque :</b> La fermeture est aussi appellé dans la littérature "l'adhérence"</p>
+							On peut ainsi définir le support d'une application.
+							<div class="exemple"> 
+							<div id="title"> Définition [support d'une application] </div> 
+							Soit $f:E \to F$ où $E$ est muni de la topologie $\mathscr{T}$ et $F$ est un espace vectoriel. 
+							On définit alors:
+							
+							<center>
+							$$\text{Supp } f = \overline{\{f \neq 0\}}$$
+							</center>
+							
+					</div>
+					</section>
+
+					<section>
+						<h1>Suite convergentes et sous-suite</h1>
+						On considère $(X,d)$ un espace métrique, $(x_n)$ une suite de $X$ et $x \in X$
+						<div class="exemple"> 
+							<div id="title"> Définition [suite convergente] </div> 
+							$(x_n)_n$ converge vers $x$ dans $(X,d)$ si:
+							<center>
+								$$
+								\forall \epsilon >0, \exists N \in \mathbb{N}, \forall n \geq N,~d(x_n,x) \leq \epsilon
+								$$
+							</center> 
+
+							Si de plus on définit $\phi:\mathbb{N} \to \mathbb{N}$ strictement croissante alors on dit que la suite $y = (y_n)_n$ 
+							<center>
+								$y_n = x_{\phi(n)}, \forall n \in \mathbb{N}$
+							</center>
+							est une <b>sous-suite de $(x_n)$</b>.
+						</div>
+						<p>On a par ailleurs la propriété suivante :</p>
+
+						<div class="exemple"> 
+							<div id="title"> Proposition[convergence des sous-suites] </div> 
+							Toute sous-suite d'une suite convergente est une suite convergente 
+							et tend vers la même limite
+						</div>
+						<p><b>Preuve:</b> écrire les définitions et le résultat est immédiat.</p>
+					</section>
+
+					<section>
+						<h1>Applications continues</h1>
+						On considère $(X,d_X), (Y, d_Y)$ deux espaces métriques.
+						On définit également la fonction $f:X\to Y$.		
+							<div class="exemple"> 
+							<div id="title"> Définition [applications continues] </div> 
+							$f$ est continue si $\forall (x_n)_ \in X^{\mathbb{N}}$ convergente vers $x \in X$,
+							la suite $(f(x_n))_n \in Y^{\mathbb{N}}$ converge vers $f(y) \in Y$.
+						</div>
+					<p>On a les équivalence suivante (preuve dans le poly.)</p>
+					<div class="exemple"> 
+						<div id="title"> Proposition [caractérisation de la continuité] </div> 
+						Les assertions suivantes sont équivalentes :
+						<ol>
+							<li>$f$ est continue</li>
+							<li>$\forall O  \subset Y$ ouvert, $f^{-1}(O)$ est un ouvert de $X$</li>
+							<li>$\forall F  \subset Y$ fermé, $f^{-1}(F)$ est un fermé de $X$</li>
+						</ol>
+					</div>
+					</section>
+					
+					<section>
+						<h1>Caractérisation séquentielle des fermés et de la fermeture</h1>
+						Les preuves des propriétés suivantes sont également dans le poly.:
+						<div class="exemple"> 
+							<div id="title"> Proposition [caractérisation séquentielle des fermés] </div> 
+							($F$ est un fermé) $\Leftrightarrow \forall (x_n)_n \in F^{\mathbb{N}}$ convergente vers $x$ on a $x \in F$.
+						</div>
+						<p>On a également le résultat suivant pour la fermeture d'un ensemble :</p>
+						<div class="exemple"> 
+							<div id="title"> Proposition [caractérisation séquentielle de la fermeture] </div> 
+							Soit $E$ un sous-ensemble d'un EM $(X,d)$. Alors:
+							<center>
+								$$
+								\overline{E} = \left\{x\in X \mid \exists (x_n)_n \in E^{\mathbb{N}}, \lim_{n} x_n = x\right\}
+								$$
+							</center>
+						</div>
+					</section>
+					<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
+						<h2 id='coverh2'>III - Espace vectoriels normés </h2>
+						</section>
+						<section>
+						<h1>Définitions</h1>
+						<div class="exemple"> 
+							<div id="title">Définition [espace vectoriel normé (EVN)] </div> 
+							Soit $E$ un  $\mathbb{K}-$espace vectoriel ($K=\mathbb{R} \text{ ou } \mathbb{C}$).
+							Une application $\Vert . \Vert:x \mapsto \Vert x \Vert, $ 
+							de $E$ dans $\mathbb{R}_+$ est une <b>norme sur $E$</b> si : <br>
+							<ol>
+								<li>$\forall x \in E, \Vert x \Vert \geq 0,$</li>
+								<li>$\Vert x \Vert =0 \Leftrightarrow x=0$</li>
+								<li>$\forall x\in E, \forall \lambda \in \mathbb{K},~\Vert \lambda x\Vert = |\lambda|\Vert x\Vert$</li>
+								<li> $\forall (x,y) \in E \times E,~\Vert x + y \Vert \leq \Vert x \Vert + \Vert y \Vert$</li>
+							</ol>
+						</div>
+						<p><b>Remarques :</b> 
+							<ul>
+								<li>$d:E\times E \to \mathbb{R}$ tel que $d(x,y) = \Vert x - y \Vert$ est une distance (exo).</li>
+								<li>						On peut voir par l'inégalité triangulaire que $\Vert x - y \Vert \geq |\Vert x \Vert - \Vert y \Vert |$
+								</li>
+							</ul>
+						
+						</p>
+						<p><b>Exemple (exo: vérifier qu'on a bien un EVN): </b></p>
+						<ul>
+							<li> $\ell^{1}(\mathbb{Z}) = \{u=(u_n) \in \mathbb{K}^{\mathbb{Z}}, \Vert u \Vert_1 = \sum_{n \in \mathbb{Z}} |u_n| < \infty\}$</li>
+						</ul>
+					</section>
+
+					<section>
+						<h1>Continuité des applications linéaires</h1>
+
+						On a une caractérisation très simple de la continuité des applications linéaires.
+						<div class="exemple"> 
+							<div id="title">Théorèmes [continuité des applications linéaires sur un EVN] </div> 
+							($E, \Vert .\Vert_E$), ($F, \Vert .\Vert_F$) des EVN et $f:E \to F$ une application linéaire. Alors:
+							<center>
+								$$
+								f \text{ est continue } \Leftrightarrow \exists C \geq 0, \forall x \in E, \Vert f(x) \Vert_{F} \leq C \Vert x \Vert_E
+								$$
+							</center>
+						</div>
+						<p><b>Preuve:</b> Au tableau</p>
+					</section>
+</div>
+
+<div class='footer'>
+	<img src="css/theme/img/logo-Telecom.svg" alt="Logo"/>
+	<div id="middlebox">Analyse - FMA_3TC10</div>
+	<ul>
+	</ul>
+</div>
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: false,
+				slideNumber: true,
+				minScale: 0.1,
+				maxScale: 5,
+				transition: 'none', //
+
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math-katex/math-katex.js', async: true },
+					{ src: 'plugin/reveald3/reveald3.js' },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+
+	</body>
+
+</html>
