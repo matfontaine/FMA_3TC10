@@ -132,7 +132,7 @@
 					<h1>Ensemble des rationnels $\mathbb{Q}$ et propriétés (1/2) </h1>
 					<ul>
 						<li> $\mathbb{Q}$ est un corps commutatif, totalement ordonné (on peut comparer deux élement) et archimédien 
-							$ \\ \quad \rightarrow$ si $p\leq q$ alors $\exists n \in \mathbb{N}$ tel que $np \geq q$
+							$ \\ \quad \rightarrow$ si $0< p \leq q$ alors $\exists n \in \mathbb{N}$ tel que $np \geq q$
 						</li>
 						<p class="remarque"> <b>Problème:</b> $\mathbb{Q}$ est dénombrable et donc comporte "des trous".
 							 Problématique pour assurer la convergence
@@ -650,7 +650,694 @@
 							</center>
 						</div>
 						<p><b>Preuve:</b> Au tableau</p>
+						Via ce théorème, on définit sur l'espace $\mathscr{A}(E,F)$ des applications linéaires continues de $E$ dans $F$ la norme suivante : 
+
+						<div class="exemple"> 
+							<div id="title">Définition [Norme opérateur linéaire] </div> 
+							Soit $f \in \mathscr{A}(E,F)$ entre des EVN $(E, \Vert . \Vert_E)$ et $(F, \Vert . \Vert_F)$. On définit la norme de $f$ par
+							<center>
+								$\begin{aligned}
+								\|f\|_{\mathscr{A}(E, F)}&=\inf \left\{C \mid\|f(x)\|_F \leqslant C\|x\|_E \text { pour tout } x \in E\right\} \\
+								 &= \underset{x \neq 0}{\sup} \frac{\Vert f(x) \Vert_F}{\Vert x \Vert_E} =
+								  \underset{\Vert x \Vert = 1}{\sup} \Vert f(x) \Vert_F = ||| f |||
+								\end{aligned}
+								$
+							</center>
+						</div>
 					</section>
+
+					<section>
+						<h1>Propriétés des normes opérateur</h1>
+
+						On a les propriétés suivantes  avec $f:E\to F, g:F\to G$ linéaires et continues.
+
+						<div class="exemple"> 
+							<div id="title">Propriétés  </div> 
+							On a les inégalités suivantes : 
+							<center>
+							$$
+							\Vert g \circ f \Vert_{\mathscr{A}(E,G)} \leq \Vert g \Vert_{\mathscr{A}(E,F)}\Vert f \Vert_{\mathscr{A}(F,G)}
+							$$
+						</center>
+						Si $f$ est en plus un homéomorphisme (continue bijective dont l'inverse est bijective) alors :
+						<center>
+							$$
+							1 \leq \Vert f \Vert_{\mathscr{A}(F,G)} \Vert f^{-1} \Vert_{\mathscr{A}(G,F)}
+							$$
+						</center>
+						</div>
+						<p><b>Preuve:</b> Esquisse au tableau</p>
+					</section>
+
+					<section>
+						<h1>Equivalence de normes</h1>
+
+						On se pose parfois la question du choix de la norme. La définition ci après réduit le nombre des possibilités.
+
+						<div class="exemple"> 
+							<div id="title">Définition [Equivalence des normes] </div> 
+							Deux normes $\Vert . \Vert_1$ et $\Vert . \Vert_2$  sur un ev E sont équivalentes s'il existe $A,B > 0$ tels que pour tout $x \in E$:
+							<center>
+							$$
+							A \Vert x \Vert_1 \leq \Vert x \Vert_2 \leq B \Vert x \Vert_1 
+							$$
+						</center>
+						</div>
+						<p><b>Remarque:</b> C'est bien une relation d'équivalence (exo)
+
+							La proposition suivante caractérise la topologie au moyen de l'équivalence de normes.
+
+						<div class="exemple"> 
+							<div id="title">Proposition  </div> 
+							Deux normes sur un même espace vectoriel sont équivalentes ssi. elles définissent la même topologie
+						</div>
+						<p><b>Preuve:</b> Au tableau
+						<p>Remarque : </p> En dimension finie, toutes les normes sont équivalentes. 
+					</section>
+
+
+					<section>
+						<h1>Produit d'e.v.n.</h1>
+						<div class="exemple"> 
+							<div id="title">Définition [Produit d'e.v.n.]  </div> 
+							Si $(F, \Vert . \Vert_F), (G, \Vert . \Vert_G)$ sont deux evn on définit alors sur l'ev $F \times G$ la fonction :
+							$$
+							\Vert (f,g) \Vert _{F \times G} = \max (\Vert f \Vert_F, \Vert g \Vert_G)
+							$$
+
+							Alors $(F \times G, \Vert . \Vert _{F\times G})$ est un e.v.n.
+						</div>
+						<p><b>Remarque:</b> 
+							<ul>
+							<li>Vérifier qu'on a une norme (rappel : $max(a,b)= \frac{a+b}{2} + \frac{|b-a|}{2}$) </li>
+							<li>On aurait pu tout autant considérer $\Vert (f,g) \Vert _{F \times G} = \Vert f\Vert_F + \Vert g\Vert_G$ ou 
+								$\Vert (f,g) \Vert _{F \times G} = \sqrt{\Vert f\Vert_F^2 + \Vert g\Vert_G^2}$ (vérifier grâce au formule)</li>
+							<li>La topologie formé des ouverts de $F \times G$ est appelé la topologie produit de deux espaces. </li>
+						</ul>
+					</p>
+						</section>
+
+						<section>
+							<h1>Application bilinéaire</h1>
+							<div class="exemple"> 
+								<div id="title">Définition [Application bilinéaire]  </div> 
+								Soit $F,G,H$ trois evn. Une application $T:F\times G \to H$ est dite <b>bilinéaire</b> si
+								<ol>
+									<li>
+										$\forall f \in F, g \to T(f, g)$ est linéaire (de $G$ dans $H$)
+									</li>
+									<li>
+										$\forall g \in G, f \to T(f,g)$ est linéaire (de $F$ dans $H$)
+									</li>
+								</ol>
+							</div>
+							<p><b>Remarque:</b> 
+								⚠ La bilinéarité est différent de la linéarité sur l'espace produit. $(x,y) \to xy$ sur $\mathbb{R} \times \mathbb{R}$ est bilinéaire
+									de $\mathbb{R} \times \mathbb{R}$ vers $\mathbb{R}$ mais ce n'est pas linéaire de $\mathbb{R}^2$ vers $\mathbb{R}$
+						</p>
+						<div class="exemple"> 
+							<div id="title">Propriété [Continuité des applications bilinéaires]  </div> 
+							Soit $(F, \Vert . \Vert)_F,(G, \Vert . \Vert)_G,(H, \Vert . \Vert)_H$ trois evn. et $T:F\times G \to H$ bilinéaire. On a équivalence entre :
+							<ol>
+								<li>
+									$T$ est continue
+								</li>
+								<li>
+									$\exists A \geq 0, \forall (f,g) \in F\times G: \Vert T(f,g)\Vert_H \leq A \Vert f \Vert_F \Vert g \Vert_G$
+								</li>
+							</ol>
+						</div>
+						<p><b>Preuve:</b> Au tableau</p>
+						<p><b>Remarque:</b>
+							⚠ Le critère est différent pour une application linéaire de $F\times G$ dans $H$ (le terme de droite serait $A(\Vert f \Vert_F + \Vert g \Vert_G$))
+					</p>
+							</section>
+							<section>
+								<h1>Densité et séparabilité : Motivations</h1>
+								<ul>
+									<li>Il est classique de faire des démonstrations dans un espace dense dans un autre plus simple à maîtriser</li>
+									<li>Les résultats se généralisent alors par limite car la densité affirme qu'un point est aussi proche que l'on veut du point de l'espace cible</li>
+									<li>La séparabilité affirme qu'une partie dénombrable de l'e.v.n. est dense. </li>
+									<li>Cette otion sera très utile pour avoir une base topologique dénombrable et parler de base hilbertienne</li>
+								</ul>
+							</section>
+
+							<section>
+								<h1>Définitions de densité et séparabilité</h1>
+								<div class="exemple">
+									<div id="title">Définition [Densité]  </div> 
+									Soit $(E, \Vert . \Vert_E$ un e.v.n. et $A \subset E$. On dit que <b>$A$ est dense dans $E$</b> si 
+									<center>
+									$$\forall x \in E, \forall \epsilon >0, \exists y \in A, \Vert x - y \Vert_E \leq \epsilon $$
+								</center>
+								</div>
+								<p>Remarque:</p> On dit aussi que $A$ est dense dans $E$ si $\overline{A} = E$
+								<div class="exemple">
+									<div id="title">Définition [Séparabilité]  </div> 
+									Soit $(E, \Vert . \Vert_E)$ un e.v.n. . On dira qu'il est séparable s'il contient un sous-ensemble dense et dénombrable.
+								</center>
+								</div>
+								<p><b>Remarque : </b> On peut définir la notion de séparabilité pour tout espace topologique grâce à la propriété suivante : </p> 
+
+
+								<div class="exemple">
+									<div id="title">Propriété [Séparabilité]  </div> 
+									Soit $(E, \Vert . \Vert_E)$ un e.v.n. . Les assertions suivantes sont équivalentes : 
+									<ol>
+										<li>$E$ est séparable</li>
+										<li>Il existe un ensemble dénombrable de boules $(B_i)_i\in \mathbb{N}$ tel que tout ouvert de $E$ s'écrit une union de boules prise dans cet ensemble. </li>
+									</ol>
+								</center>
+								</div>
+							</section>
+							<section>
+								<h1>Forme linéaire est noyau</h1>
+								Le théorème du rang en dimension infini n'est pas appliable. On peut cepenant parler de forme linéaire 
+								<div class="exemple">
+									<div id="title">Définition [forme linéaire et hyperplan]  </div> 
+									Soit $E$ un e.v. On appelle forme linéaire $f$ toute AL $E \to \mathbb{K}$. Le noyau d'une forme linéaire $f^{-1}({0})$ non nulle est appelé un hyperplan
+								</div>
+								<b>Remarque</b> : Si $E$ est un e.v.n., la contiuité d'une forme linéaire se généralise avec la valeur absolue ou le module |x| à l'arrivé.
+							</section>							
+							<section>
+								<h1>Propriétés sur les hyperplans</h1>
+								
+								<div class="exemple">
+									<div id="title">Propriétés [somme directe avec un hyperplan]  </div> 
+									Soit $F$ un hyperlan dans l'ev $E$. Alos il existe un sous espace vectoriel $G$ de dimension $1$ tel que $F \oplus G= E$. Par ailleurs, si $G$ est un sev tel que $F \oplus G =E$ alors $G$ est de dimensjon $1$.
+								</div>
+								<p></p>
+								<div class="exemple">
+									<div id="title">Propriétés [hyperplan dans un evn]  </div> 
+									Un hyperplan dans un evn est soit dense soit fermé.
+								</div>
+								<b>Preuve: </b> Au tableau
+							</section>
+						
+							<section>
+								<h1>Suites de Cauchy & Espace de Banach</h1>
+								Nous rappelons ici la définition des suites Cauchy. Elles peuvent être nécessaire pour la convergence
+								sans pour autant exhiber la connaissance de la limite.
+
+								<div class="exemple">
+									<div id="title">Définition [Suite de Cauchy]  </div> 
+									Une suite $(x_n)_n$ dans un evn $(E, \Vert . \Vert_E)$ est dite <b>de Cauchy</b> si:
+									<center>
+									$$
+									\forall \epsilon >0, \exists N \in \mathbb{N}, \forall m,n \geq N, \Vert x_m - x_n \Vert_E \leq \epsilon
+									$$
+								</center>
+								De manière équivalente, on a :
+								<center>
+									$$
+									\forall \epsilon >0, \exists N \in \mathbb{N}, \forall n \geq N, \forall k \geq 0 \Vert x_{n+k} - x_n \Vert_E \leq \epsilon
+									$$
+								</center>
+							</div>
+
+							On a vu que les suites convergentes sont de Cauchy mais la réciproque n'est pas forcément vraie ... On aimerait cependant considérer 
+							les espaces où cette propriété est équivalente 
+
+							<div class="exemple">
+								<div id="title">Définition [EVN complet ou espace de Banach]  </div> 
+								Un <b>e.v.n. $(E, \Vert . \Vert_E)$ est complet</b> (ou est un <b>espace de Banach</b>) si toute suite de Cauchy converge vers un point de $E$.
+						</div>
+
+							</section>
+
+					<section>
+						<h1>Caractérisation des espaces de Banach</h1>
+						Il est à noter qu'un evn de dimension finie 
+						(au sens d'un $\mathbb{K}$-espace vectoriel avec $\mathbb{K} = \mathbb{R}$ ou $\mathbb{C}$) est complet.
+
+						<div class="remarque">
+							Quel critère de complétude dans un evn de dimension infinie ? 
+						</div>
+
+
+						<div class="exemple">
+							<div id="title">Propriété [Critère de complétude en dimension infinie]  </div> 
+							Un e.v.n. $(E, \Vert . \Vert_E)$ est complet ssi toute série de terme général $(x_n)_{n \geq 0}$ telle que $\sum_{n \geq 0}\Vert x_n \Vert_E < \infty$ est convergence. 
+
+					</div>
+					<p><b>Preuve: </b> Au tableau</p>
+					<p>
+						<b>Remarques :</b>
+						<ul>
+							<li>De telles séries définie dans la propriété sont dites <b>absolument convergentes</b> (CVA)</li>
+							<li>⚠ $CV \cancel{\implies} CVA$</li>
+						</ul>
+					</p>
+					</section>
+					<section>
+						<h1>Prolongement</h1>
+					Le résultat suivant permet d'exhiber une application linéaire continue d'un espace $E$ dans un Banach $F$ si on connaît uniquement une AL continue d'un sev dense dans $E$ dans $F$.
+					<div class="exemple">
+						<div id="title">Propriétés [prolongemente d'opérateur linéaire continu]  </div> 
+						Soient $E,F$ deux evn, $F$ complet et $G$ un sev dense dans $E$. Si $A:G\to F$ est linéaire continu alors
+						il exists $\tilde{A}:E \to F$ linéaire continu telle que : 
+						<center>
+						$$
+						\Vert A \Vert_{\mathscr{A}(G,F)} = \Vert \tilde{A} \Vert_{\mathscr{A}(E,F)}
+						$$
+					</center>
+				</div>
+
+				<p><b>Preuve: </b> Au tableau</p>
+					</section>
+					<section>
+						<h1>Complétion</h1>
+					Le théorème suivant explique comment compléter un espace qui ne l'est pas. 
+					<div class="exemple">
+						<div id="title">Théorème [Complétion d'un evn]  </div> 
+						Soient $E$ un evn. Alors il existe un evn $F$ tel que 
+
+						<ol>
+							<li>L'evn $F$ est complet</li>
+							<li>Il existes une AL $I:E \to F$ isométrique et pour qui $I(E)$ est dense dans $F$</li>
+						</ol>
+						Si on a $F_2$ vérifiant les points précédent avec $I_2$ l'isométrie du second alors $I_2 \circ I^{-1}:F \to F_2$ est une isométrie bijective.
+						$F$ est unique à isométrie près. 
+						
+				</div>
+				<p><b>Remarque :</b> La preuve s'inspire grandement de la construction de $\mathbb{R}$ à partir des suites de Cauchy dans $\mathbb{Q}$.</p>
+
+					</section>
+
+					<section>
+						<h1>Exemples (1/2)</h1>
+						$(E, \Vert.\Vert_1)$ un ev des suites réels indéxées par $\mathbb{N}$ de support fini. La norme $\Vert.\Vert_1$ est définie par :
+						$$
+						\Vert x_n\Vert_1 = \sum_{n\in \mathbb{N}} | x_n |
+						$$
+						La norme est bien définie au passage car les suites sont à support fini. Montrer que $E$ n'est pas complet.
+					</section>
+
+					<section>
+						<h1>Exemples (2/2)</h1>
+						Montrer que :
+						<ol>
+							<li>L'espace $\ell^{1}(\mathbb{N})$ est complet</li>
+							<li>L'espace $E$ dans la slide précédente est dense dans $\ell^{1}(\mathbb{N})$</li>
+							<li>Toute suite de Cauchy de $E$ converge ponctuellement vers une suite $\ell^{1}(\mathbb{N})$</li>
+						</ol>
+					</section>
+
+					<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
+						<h2 id='coverh2'>III - Espaces $L^{p}$</h2>
+	
+					</section>
+					<section>
+						<h1>Introduction</h1>
+						<ul>
+							<li>On introduira les espaces $L^p, 1\leq p \leq \infty$ en tant qu'evn</li>
+							<li>On rappelle des propriétés de la théorie de la mesure</li>
+							<li>Par abus de notation on notera parfois $[a,b] = \prod_{i=1}^{N}[a_i,b_i]$ dans $\mathbb{R}^N$</li>
+							<li> On rappelle que $\mathcal{B}(\mathbb{R}^N)$ est la plus petite tribu engendré par les ouverts, ou fermés ou intervalles de la forme $]-\infty, b]$</li>
+						</ul>
+						</section>
+						<section>
+						<h1>Rappel mesure de Lebesgue</h1>
+						La mesure de Lebesgue est l'unique mesure $\Lambda_N$ définie sur l'espace mesurable $(\mathbb{R}^N, \mathcal{B}(\mathbb{R}^N)$ tel que:
+						$$
+						\lambda_N([a,b]) = \prod_{i=1}^{N}(b_i-a_i)
+						$$
+						<p><b>Remarque:</b></p> $\lambda_N$ n'est pas une mesure de probabilité ou une mesure finie.
+						Elle est seulement finie sur les compacts (mesure de Radon)
+						Elle est invariante par translation $\lambda_N(x+A)=\lambda_N(A)$
+					</section>
+					<section>
+						<h1>Fonctions borélienne</h1>
+						On rappelle que $f:\mathbb{R}^N \to \overline{\mathbb{R}}$ est borélienne si $\forall A \in \mathcal{B}(\overline{\mathbb{R}}), f^{-1}(A) \in \mathcal{B}(\mathbb{R}^N)$
+						<p><b>Remarque:</b></p>Les fonctions continues, cpm, maximum, minium, somme et produit de fonctions borélienne reste borélienne. La limite simple d'une suite de fonction borélienne est également borélienne.
+						Dans ce cours, on se passera souvent de justifier cette propriété.
+						<ul>
+							<li>L'intégrale d'une fonction borélienne $f$  est définie par:
+								$$
+								\int f :=\int f_{+} - \int f_{-}
+								$$
+								avec $f_{-} = \max(-f,0)$ et $f_{+} = \max(f,0)$
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h1>Espace $\mathscr{L}^1(\mathbb{R}^N)$</h1>
+						<div class="exemple">
+							<div id="title">Définition [Espace $\mathscr{L}^1(\mathbb{R}^N)$]  </div> 
+							On dira que $f\in\mathscr{L}^1(\mathbb{R}^N)$ (intégrable) de $\mathbb{R}^N$ dans $\mathbb{R}$  si $f$ est borélienne et 
+							$\int |f| < \infty$
+							
+					</div>
+
+					On rappelle le résultat utile suivant : 
+
+					<div class="exemple">
+						<div id="title">Théorème  </div> 
+						$\mathscr{L}^1(\mathbb{R}^N)$ est un ev et $f \mapsto \int f$ est une forme linéaire sur cet espace.
+						De plus, $f\leq g \implies \int f \leq \int g$
+						
+				</div>
+					</section>
+					<section>
+						<h1>Théorème de convergence monotone</h1>
+					On rappelle que pour $f_n:\mathbb{R}^N \to \mathbb{R}_+$ borélienne admettant $f$ comme limite simple. ALors si $f$ et borélienne et 
+					$(f_n(x))_n$ est croisante pour tout $x \in \mathbb{R}^N$ alors: 
+					<center>$$
+					\int f = \lim_{n\to\infty}\int f_n
+					$$</center>
+				</section>
+				<section>
+					<h1>Ensemble négligeables, égalite presque partout (p.p)</h1>
+					<ul>
+					<li>Si on a $A$ un borélien de $\mathbb{R}^N$ $A$ est négligeable si $\lambda_N(A) = 0$</li>
+					<li>$\int f = 0$ pour $f$ borélienne est équivalent à $\{f\neq 0\}$ est négligeable</li>
+				<li>on dira que $f\overset{p.p}{=}g$  si $\{f \neq g \}$ est négligeable</li>
+				<li>$\overset{p.p}{=}$ est une relation d'équivalence</li>
+				</ul>
+				<p><b>Remarque clé : </b></p>Cela signie que $\mathscr{L}^1(\mathbb{R}^N)$ muni de $\Vert f \Vert_1 = \int |f|$ 
+				n'est pas un evn car $\int |f| =0$ implique que $f=0$ seulement sur les ensembles non négligeables. 
+				A  noter cependant que les autre propriétés de normes sont vérifiées (on parle alors de semi-norme)	
+			</section>
+			<section>
+				<h1>Résultat Echange de limite et intégrale </h1>
+				<ul>
+					<li> On rappelle le <b>lemme de Fatou</b> pour $f_n:\mathbb{R}^N \to \mathbb{R}_+$ borélienne on a :
+						$$
+						\int\lim \inf f_n \leq \lim \inf \int f_n
+						$$
+					</li>
+					<li>
+						le théorème de convergence dominé pour $f_n:\mathbb{R}^N \to \mathbb{R}$ boréliennes tel que $|f_n|\leq g, p.p.$ et $f_n \to f p.p.$ où $f$ est borélienne. 
+						Alors $f$ est intégralbe et 
+						$$
+						\lim_{n\to \infty} \int |f_n-f|=0
+						$$
+					</li>
+					<li>Si on a la convergence précédente, on note $f_n \overset{L^1}{\to} f$ dans le cas où $f_n,f \in \mathscr{L}^{1}(\mathbb{R}^N)$</li>
+					<li> En corollaire, si $\int \sum_n |f_n| < \infty$ ou si les $f_n$ sont à valeurs positives alors 
+						$$
+					    \int \sum_{n \geq 1}f_n = \sum_{n \geq 1} \int f_n
+						$$
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h1>Rappelle Fubini-Tonelli</h1>
+				Soit $f$ borélienne sur $\mathbb{R}^N$ avec $N = N_1 + N_2$. Alors : 
+				<ul>
+					<li>On sait que $y\to f(x,y)$ avec $x \in \mathbb{R}^{N_1}$ est borélienne et vice-versa (idem pour $x \to \int f(x,y)dy$ etc.)
+					</li>
+					<li>Si on a $f \geq 0$ (critère de Tonelli) ou $\int |f| < \infty$ (critère de Fubini) alors:
+					$$
+					\int f = 
+					\int_{\mathbb{R}^{N_1}}\left[\int_{\mathbb{R}^{N_2}}f(x,y)dy\right]dx
+					 = \int_{\mathbb{R}^{N_2}}\left[\int_{\mathbb{R}^{N_1}}f(x,y)dx\right]dy 
+				$$</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Changement de variables</h1>
+				On rappelle que:
+				<ul>
+					<li> $\phi:U\to V$ des vouverts est un $\mathcal{C}^1-$difféomorphisme si $\phi$ est bijective, continuement dérivable et son inverse l'est aussi.</li>
+					<li> En définissant $J_{\phi}$ la jacobienne de $\phi$ on a le théorème du changement de variable pour $f:V \to \mathbb{R}$ borélienne : 
+						$$
+						\int_U f\circ\phi = \int_V \frac{f}{|J_{\phi} \circ \phi^{-1}|}
+						$$
+					</li>
+				</ul>
+			</section>
+
+			<section>
+				<h1>Espace $L^1(\mathbb{R}^N)$</h1>
+				Comme mentionée, $\overset{p.p.}{=}$ est une relation d'équivalence. On note:
+				<center>
+					$$
+					[f] = \{g \in \mathscr{L}^1(\mathbb{R}^N); f \overset{p.p.}{=} g\}
+					$$
+				</center>
+				La classe d'équivalence de $f$.
+				<ul>
+				<li>Il est simple de démontrer qu'on a alors un espace vectoriel.</li>
+				<li>Muni de la fonction $\Vert [f]\Vert_1 = \int |f|$ On a même un evn (la norme nulle de $f$ implique $f=0$ dans $L^1$)</li>
+			</ul>
+
+			<div class="exemple">
+				<div id="title">Définition [Espace $L^1(\mathbb{R}^N)$]  </div> 
+				$(L^1(\mathbb{R}^N), \Vert . \Vert_1)$ est l'evn des classes d'équivalence des fonctions intégrables
+		</div>
+		<p><b>Remarque : </b></p>  On notera $f_n \overset{L^1}{\to} f$ la convergence dans l'e.v.n. $(L^1(\mathbb{R}^N), \Vert . \Vert_1)$
+		C'est à dire $\lim_n \Vert f_n - f \Vert_1 = 0$
+			</section>
+
+		<section>
+			<h1>Propriétés</h1>
+			Quelques propriétés fondamentales 
+
+			<div class="exemple">
+				<div id="title"> Théorème  </div> 
+L'intégrale est une application continue de $L^1(\mathbb{R}^N)$ dans $\mathbb{R}$.</div>
+<p><b>Preuve:</b> au tableau</p>
+
+<div class="exemple">
+	<div id="title"> Théorème  </div> 
+L'espace $\mathscr{C}_c(\mathbb{R}^N)$ des fonctions continues à support compact est dense dans $L^1(\mathbb{R}^N)$</div>
+<p><b>Remarque :</b> Le deuxième théorème est assez compliqué à démontrer. Pour une preuve regardez le chapitre 4 du polycopié <a href="https://www.imo.universite-paris-saclay.fr/~jean-francois.le-gall/IPPA2.pdf">ici</a></p>
+</section>
+
+<section>
+	<h1>Espaces $\mathscr{L}^p(\mathbb{R}^N)$</h1>
+	Certaines propriétés pour les espaces $\mathscr{L}^1(\mathbb{R}^N)$ sont aussi valables pour $\mathscr{L}^p(\mathbb{R}^N)$ où $p >1$
+	<div class="exemple">
+		<div id="title">Définition [Espace $\mathscr{L}^p(\mathbb{R}^N)$]  </div> 
+		 pour $p \in [1, +\infty[$, on appelle $\mathscr{L}^p(\mathbb{R}^N)$ les fonctions boréliennes telles que $|f|^p \in \mathscr{L}^1(\mathbb{R}^N)$.
+		 Dans le cas où $p=\infty$, l'espace $\mathscr{L}^\infty(\mathbb{R}^N)$ est celui des fonctions boréliennes $f$ àvaleurs complexes 
+		 telle qu'il existe une fonction bornée $g$ vérfiant $g\overset{p.p.}{=}f$.
+
+</div>
+<p><b>Remarques : </b></p>
+On verra par la suite que $\mathscr{L}^p(\mathbb{R}^N)$ est un ev et que 
+<center>
+   $$
+   \Vert f\Vert_p = (\int |f|^p)^{1/p}
+   $$
+</center>
+est une semi-norme. Pour $p= \infty$, on aura les mêmes résultats mais pour : 
+
+<center>
+   $$
+   \Vert f \Vert_\infty = \inf\{\underset{t\in\mathbb{R}^N}{\sup} |f(t)| \mid g\overset{p.p.}{=}f\}
+   $$
+</center>
+</section>
+
+<section>
+	<h1>Inégalités intermédiaires</h1>
+	Les résultats suivant vont nous permettre de démontrer que $\mathscr{L}^p(\mathbb{R}^N)$ est un ev et $\Vert .\Vert_p$ une semi norme.
+	<div class="exemple">
+		<div id="title">Théorème [Inégalité d'Young]  </div> 
+		 pour $a,b\in\mathbb{R}_+, p,q \in]1,+\infty[$ avec $1/p + 1/q = 1$ (on dit $p,q$ conjugués) alors : 
+		 <center>
+			$$
+			ab \leq \frac{a^p}{p} + \frac{b^q}{q}
+			$$
+		 </center>
+
+</div>
+<br>
+<div class="exemple">
+	<div id="title">Théorème [Inégalité de Hölder]  </div> 
+	 Soit $p,q \in]1,+\infty[$ avec $1/p + 1/q = 1$. Si $f \in \mathscr{L}^p(\mathbb{R}^N), g \in \mathscr{L}^q(\mathbb{R}^N)$
+	 alors $fg \in \mathscr{L}^1(\mathbb{R}^N)$ et 
+	 <center>
+		$$
+		\Vert fg \Vert_1 \leq \Vert f \Vert_p \Vert g \Vert_q
+		$$
+	 </center>
+
+</div>
+
+<br>
+<div class="exemple">
+	<div id="title">Théorème [Inégalité de Minkowski]  </div> 
+	 Soit $p\in]1,+\infty[$  $f,g \in \mathscr{L}^p(\mathbb{R}^N)$.
+	 alors $f+g \in \mathscr{L}^p(\mathbb{R}^N)$ et 
+	 <center>
+		$$
+		\Vert f+g \Vert_p \leq \Vert f \Vert_p + \Vert g \Vert_p
+		$$
+	 </center>
+
+</div>
+<p><b>Preuve :</b> Au tableau.</p>
+</section>
+<section>
+	<h1>Résultats sur $\mathscr{L}^p(\mathbb{R}^N)$</h1>
+
+	On a alors les résultats suivants : 
+	<div class="exemple">
+	<div id="title">Théorème  </div> 
+	L'espace $\mathscr{L}^p(\mathbb{R}^N)$ est un ev et $f \mapsto \Vert f \Vert_p$ est une semi-norme sur cet espace.
+
+</div>
+<br>
+<div class="exemple">
+	<div id="title">Théorème  [convergence dominée dans $\mathscr{L}^p(\mathbb{R}^N)$] </div> 
+	si pour $1 \leq p < \infty$ et $(f_n)_n $ une suite dans $\mathscr{L}^p(\mathbb{R}^N)$ on a :
+	<ul>
+		<li>$f_n \overset{p.p.}{\to} f$</li>
+		<li>$\exists g \in \mathscr{L}^p(\mathbb{R}^N)$ telle que pour $n \in \mathbb{N}, |f_n| \leq g,$ p.p.</li>
+		Alors $f \in \mathscr{L}^p(\mathbb{R}^N)$ et $f_n \overset{L^p}{\to} f$
+</div>
+<p><b>Remarque : </b> On a une réciproque partielle, si on a $f_n \overset{L^p}{\to} f $ des fonctions dans $\mathscr{L}^p(\mathbb{R}^N)$ alors il existe une sous suite $f_{n_k}$ vérfiant les propriétés du CVD.</p>
+</section>
+
+<section>
+	<h1>Espace $L^p(\mathbb{R}^N)$ et complétude</h1>
+	Comme dans le cas $L^1$, on peut construire avec $\Vert . \Vert_p$ un evn.
+
+	<div class="exemple">
+		<div id="title">Définition [Espace $L^p(\mathbb{R}^N)$ et convergence] </div> 
+		On définit pour $p \in [1, +\infty]$ l'evn $(L^p(\mathbb{R}^N), \Vert.\Vert)$ 
+		des classes d'équivalence des fonctions de $\mathscr{L}^p(\mathbb{R}^N)$.
+		<br>
+		Si on prend $f_n$ dans $L^p(\mathbb{R}^N)$ (ou $\mathscr{L}^p(\mathbb{R}^N)$) on dira que la <b>suite $(f_n)_n$ converge vers $f \in L^p(\mathbb{R}^N)$</b> (ou $\mathscr{L}^p(\mathbb{R}^N)$)
+		et on notera $f_n \overset{L^p}{\to} f$ si 
+		<center>
+			$$
+			\lim_n \Vert f_n -f \Vert_p = 0
+			$$
+		</center>
+	</div>
+	<br>
+	<div class="exemple">
+		<div id="title">Théorème [Complétude des espaces $L^p(\mathbb{R}^N)$ et espace dense] </div> 
+		Pour $p \in [1, +\infty]$, $(L^p(\mathbb{R}^N), \Vert .\Vert_p)$ est un espace de Banach.
+		Par ailleurs pour $1 \leq p < \infty$ $\mathscr{C}_c(\mathbb{R}^N)$ est dense dans $(L^p(\mathbb{R}^N), \Vert .\Vert_p)$
+	</div>
+	<p><b>Preuve :</b> Au tableau </p>
+</section>
+
+<section>
+	<h1>Inclusion entre espaces $L^p$</h1>
+	Les résultats ci-dessous concernent les inclusions entre espaces $L^p$
+	<div class="exemple">
+		<div id="title">Proposition [Inclusion] </div> 
+		Pour $p^\prime \in [p, q]$ finis, alors $L^p \cap L^q \subset L^{p^\prime}$. Si $f \in L^p$ est à support compact alors $f \in L^q, \forall q \leq p$ (reste vrai même si $p=\infty$)
+	</div>
+	<p><b>Preuve : partielle au tableau.</b></p>
+</section>
+
+<section>
+	<h1>Convolution dans $L^1$</h1>
+	On rappelle que si $f$ est intégrale alors sa fonction translatée $\mathscr{T}_tf$ qui vérifie
+	$\mathscr{T}_tf(x) = f(t-x)$ est aussi intégrable et vérifie : 
+
+	<center>
+	$$
+	\int\mathscr{T}_tf = \int f
+	$$
+</center>
+Ainsi si $f$ est intégrable alors $t \to \mathscr{T}_tf$ peut être vu come une fonction à valeurs dans $\mathscr{L}^1$ (voire $L^1$). De plus, on a le résultat suivant : 
+
+<div class="exemple">
+	<div id="title">Théorème [continuité de $\mathscr{T}_tf$] </div> 
+	pour $p \in [1, +\infty[,$ si $f \in L^p$ alors la fonction $t\mapsto \mathscr{T}_tf$ est continue de $\mathbb{R}^N$ dans $L^p(\mathbb{R}^N)$.
+</div>
+On définit maintenant le produit de convolution 
+<div class="exemple">
+	<div id="title">Définition [Produit de convolution] </div> 
+	pour $f,g$ boréliennes, le <b>produit de convolution</b> de $f,g$ notée $f\star g$ est définie par
+	<center>
+		$$
+		(f\star g)(x) = \int f(x-y)g(y)dy
+		$$
+	</center>
+	en tout point $x$ où l'intégrale est correctement définie.
+</div>
+</section>
+
+<section>
+	<h1>Propriétés sur la convolution</h1>
+
+	On a la propriété fondamentale suivante sur $\mathscr{L}^1(\mathbb{R}^N)$:
+
+	<div class="exemple">
+		<div id="title">Théorème [Convolution dans $L^1$] </div> 
+		pour $f,g \in \mathscr{L}^1(\mathbb{R}^N)$ $f\star g$ est défini et fini en presque tout point.
+		la classe d'équivalence notée $f \star g \in L^1(\mathbb{R}^N)$ et 
+		<center>
+
+		$$
+		\Vert f\star g \Vert_1 \leq \Vert f \Vert_1 \Vert g \Vert
+		$$
+		</center>
+		De plus : 
+	<center>
+		$$
+		\int f\star g = \int f \times \int g
+		$$
+	</center>
+	</div>
+	<p><b>Preuve :</b> Au tableau</p>
+	Il est clair que $(f,g) \mapsto f\star g$ est une application bilinéaire et qui est invariante si on reste dans les même classes d'équivalence.
+	En soit (pour le moment) une application de $L^1 \times L^1 \to L^1$. De plus il est commutatif et associatif (preuve au tableau).
+</section>
+
+<section>
+	<h1>Convolution entre $L^p$ et $L^q$</h1>
+	On va montrer que $f\star g(x)$ peut aussi bien être définie dans le cas où les fonctions ne sont pas intégrables mais plutôt dans $L^p, L^q$.
+
+	<div class="exemple">
+		<div id="title">Théorème [Convolution entre $L^p$ et $L^q$] </div> 
+		 Soient $p,q \in [1, +\infty]$ conjugués $(1/p + 1/q = 1)$. LASSE:
+		 <ol>
+			<li>Si $f \in L^p(\mathbb{R}^N), g \in L^q(\mathbb{R}^N)$ alors $f\star g$
+				est définie en tout point et est continue bornée par $\Vert f \Vert_p \Vert g \Vert_q$
+			</li>
+			<li>$(f,g) \mapsto f \star g$ sur $L^p \times L^q$ et à valeurs dans $L^\infty$ est bilinéaire continue</li>
+			<li>Si $p,q < \infty$ alors $f\star g(x) \to 0$ quand $x \to \infty$. Ainsi la convolution sur $L^p \times L^q$ est à valeurs dans $\mathscr{C}^0$</li>
+		 </ol>
+
+	</div>
+	<p><b>Preuve :</b> Au tableau</p>
+
+</section>
+
+<section>
+	<h1>Convolution entre $L^p$ et $L^1$</h1>
+	<div class="exemple">
+		<div id="title">Théorème [Convolution entre $L^1$ et $L^p$] </div> 
+		Soit $f \in L^1$ et $g \in L^p$ avec $p \in [1, \infty[$. Alors $f \star g$ est définie et fini en 
+		preque tout point. De plus $(f,g) \mapsto f\star g$ défnie sur $L^1 \times L^p$ est à valeurs dans $L^p$ et est bilinéaire continue avec 
+		<center>
+			$$
+			\Vert f\star g \Vert_p \leq \Vert f \Vert_1 \Vert g\Vert_p
+			$$
+		</center>
+
+	</div>
+	<p><b>Preuve : </b> Au tableau</p>
+</section>
+
+<section>
+	<h1>Résumé sur les règle de calcul sur les $L^p(\mathbb{R}^N)$</h1>
+	<ul>
+		<li>Convoluer $L^1$ avec $L^p \implies$ une fonction sur $L^p$ </li>
+		<li>Convoluer $L^p$ avec $L^q \implies$ une fonction sur $L^\infty$ qui est continue.
+			Si $p,q$ finis elle est de limite nulle à l'infini </li>
+		<li>produit de $L^p$ avec $L^q \implies L^1$ (par Hölder)</li>
+		<li>produit de $L^\infty$ avec $L^p \implies L^p$ </li>
+	</ul>
+</section>
+
+<section>
+	<h1>Règles de calculs dans $L^p([0,1[)$ et $\ell^p$</h1>
+	On introduit ici (pour plus tard pour Fourier) les espaces $L^p([0,1[)$ et $\ell^p$ qui ont 
+	une différente topologie que sur $\mathbb{R}$. L'idée étant de les munir d'une topologie pour préserver la périodicité
+</section>
+
 </div>
 
 <div class='footer'>
