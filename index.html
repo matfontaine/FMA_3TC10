@@ -1148,7 +1148,7 @@ est une semi-norme. Pour $p= \infty$, on aura les mêmes résultats mais pour :
 <br>
 <div class="exemple">
 	<div id="title">Théorème [Inégalité de Hölder]  </div> 
-	 Soit $p,q \in]1,+\infty[$ avec $1/p + 1/q = 1$. Si $f \in \mathscr{L}^p(\mathbb{R}^N), g \in \mathscr{L}^q(\mathbb{R}^N)$
+	 Soit $p,q \in]1,+\infty]$ avec $1/p + 1/q = 1$. Si $f \in \mathscr{L}^p(\mathbb{R}^N), g \in \mathscr{L}^q(\mathbb{R}^N)$
 	 alors $fg \in \mathscr{L}^1(\mathbb{R}^N)$ et 
 	 <center>
 		$$
@@ -1161,7 +1161,7 @@ est une semi-norme. Pour $p= \infty$, on aura les mêmes résultats mais pour :
 <br>
 <div class="exemple">
 	<div id="title">Théorème [Inégalité de Minkowski]  </div> 
-	 Soit $p\in]1,+\infty[$  $f,g \in \mathscr{L}^p(\mathbb{R}^N)$.
+	 Soit $p\in]1,+\infty]$  $f,g \in \mathscr{L}^p(\mathbb{R}^N)$.
 	 alors $f+g \in \mathscr{L}^p(\mathbb{R}^N)$ et 
 	 <center>
 		$$
@@ -1772,34 +1772,32 @@ On a les règles de calculs suivantes :
 
 	
 		<section>
-			<h1>Résultats et convolution circulaire</h1>
-			Par le théorème "égalité de Parseval" on a donc : 
-			<center>
-				$$
-				f = \sum_{k \in \mathbb{Z}} c_k(f) e_k \quad \texttt{(Série de Fourier)}
-				$$
-			</center>
-			qui converge au sens $L^2$ et l'égalité de Parseval permet d'écrire 
-			<center>
-				$$
-				\sum_{k \in \mathbb{Z}} |c_k(f)|^2 = \Vert f \Vert_{L^2_p([0,1])}^2
-				$$
-			</center>
-	
-			On rappelle par ailleurs la convolution des fonctions $1$-périodiques 
-	
+			<h1>Introduction</h1>
+			<ul>
+				<li>On définit ici la transformée de Fourier des fonctions définies sur $\mathbb{R}$</li>
+				<li>On commence par les fonctions sommables, puis nous parlerons du théorème d'inversion</li>
+				<li>On étendra aux fonctions $L^2$ et on montrera qu'elle établit une isométrie bijective entre $L^2$ et lui-même</li>
+				<li>Dans cette partie, $L^p$ fait référence à $L^p(\mathbb{R})$ (fonctions de $\mathbb{R}$ et à valeurs complexes)</li>
+			</ul>
+		</section>
+
+		<section>
+			<h1>Transformée de Fourier sur $L^1$</h1>
 			<div class="exemple">
-				<div id="title"> Définition [convolution circulaire] </div> 
-				Si $f,g$ sont $1$-périodique on note $f \star_{c} g$ la convolution 
-				circulaire définie par (quand cela existe)
+				<div id="title">Définition [transformée de Fourier dans $L^1$] </div> 
+				Soit $f \in L^1$, on appelle <b>transformée de Fourier de $f$</b>, que l'on note $\hat{f}$ (ou $\mathscr{F}(f)$) 
+				la fonction définie par 
 				<center>
 					$$
-					(f \star_c g) (x) = \int_{0}^{1} f(t)g(x-t)dt
+					\forall xi \in \mathbb{R}, \hat{f}(\xi) = \int f(x) e^{-2i\pi\xi.x} dx
 					$$
 				</center>
-				On remarque que cette fonction est $1$-périodique.
+
 			</div>
-		</section>	
+			<p><b>Remarques :</b>
+			$\hat{f}$ est le produit d'une fonction bornée par une fonction $L^1$
+			</p>
+		</section>
 </div>
 
 <div class='footer'>
