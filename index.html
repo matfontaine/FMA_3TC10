@@ -407,7 +407,7 @@
 					</section>
 
 					<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
-						<h2 id='coverh2'>III - Topologie de base et définitions</h2>
+						<h2 id='coverh2'>II - Topologie de base et définitions</h2>
 	
 					</section>
 					<section>
@@ -944,7 +944,7 @@
 					</section>
 
 					<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
-						<h2 id='coverh2'>III - Espaces $L^{p}$</h2>
+						<h2 id='coverh2'>IV - Espaces $L^{p}$</h2>
 	
 					</section>
 					<section>
@@ -1334,17 +1334,477 @@ On définit maintenant le produit de convolution
 
 <section>
 	<h1>Règles de calculs dans $L^p([0,1[)$ et $\ell^p$</h1>
-	On introduit ici (pour plus tard pour Fourier) les espaces $L^p([0,1[)$ et $\ell^p$ qui ont 
+	On introduit ici les espaces $L^p([0,1[)$ et $\ell^p$ qui ont 
 	une différente topologie que sur $\mathbb{R}$. L'idée étant de les munir d'une topologie pour préserver la périodicité
+
+	<div class="exemple">
+		<div id="title">Définition [Continuité sur $[0,1[$ torique] </div> 
+		Une fonction $f$ définie sur $[0,1[$ est dite continue si elle est continue (au sens classique) et que
+		<center>
+			$$
+			\lim_{x\to 1} f(x) = f(0)
+			$$
+		</center>
+
+	</div>
+
+	<div class="exemple">
+		<div id="title">Définition [Espaces $L^p([0,1[$ et $\ell^p$] </div> 
+		Les $L^p([0,1[)$ sont définies comme sur $\mathbb{R}$ avec $|f|^p$ intégrable ou $f$ borné si $p=\infty$). 
+		Leur norme est donnée par $p < \infty$ : 
+		<center>
+		$$\Vert f \Vert_p = (\int_0^1|f(t)|^p dt)^{1/p}$$
+		</center>
+		et pour les $\ell^p$ avec $p$ finie avec la norme:
+		<center>
+		$$
+			\Vert u \Vert_p = (\sum_{n\in \mathbb{Z}}|u_n|^p)^{1/p}
+		$$
+	</center>
+	$l^\infty$ est quant à lui l'espace des suites bornée et la norme $\infty$ est la norne supérieure 
+	de l'ensemble des valeurs prises par les $|u_n|$
+	</div>
+
+</section>
+<section>
+	<h1>Inclusion des $L^p([0,1[)$ et $\ell^p$</h1>
+	Pour rappel sur $\mathbb{R}$ on a pas vraiment d'inclusion entre les $L^p$. C'est différent sur $[0,1[$ et $\mathbb{Z}$.
+
+	<div class="exemple">
+		<div id="title">Propriétés [Inclusions des $L^p$ et $\ell^p$] </div> 
+		On a les résultats suivants :
+		<ol>
+			<li> si $p < q$ alors $L^q([0,1[) \subset L^p([0,1[)$ (même infini)</li>
+			<li>si $p < q$ alors $\ell^p \subset \ell^q$ (on a l'inclusion dans l'autre sens)</li>
+			<li>Les fonctions continues sont denses dans les $L^p$ pour $p$ fini</li>
+			<li>Le suites à support fini sont denses dans les espaces $\ell^p$ pour $p$ fini</li>
+		</ol>
+	</div>
+
+</section>
+<section>
+	<h1>Convolution dans les $L^p([0,1[)$ et $\ell^p$</h1>
+	Quand la somme existe, la convolution pour deux suites $u,v$ est donnée par :
+	<center>
+		$$
+		(u\star v)_n = \sum u_k v_{n-k}
+		$$
+	</center>
+	Si $f,g$ sont définies sur $[0,1[$ on définit le produit de convolution (quand il existe) par 
+	<center>
+		$$
+		(f\star g)(x) = \int_0^x f(t)g(x-t)dt + \int_{x}^1 f(t)g(1+x-t)dt
+		$$
+	</center>
+On a les règles de calculs suivantes : 
+<div class="exemple">
+	<div id="title">Propriétés [règles de calculs] </div> 
+	si on a $p,q$ conjugués alors 
+	<ol>
+		<li> si $f \in L^p([0,1[), g \in L^q([0,1[)$ alors $f \star g$ est continue sur $[0,1[$ et est bornée.
+			(elle est par conséquent dans tous les $L^r([0,1[$)
+		</li>
+		<li>si $u \in \ell^p, v \in \ell^q$ alors $u \star v$ est bornée. </li>
+		<li>Si $f \in L^1([0,1[), g \in L^p([0,1[)$ alors $f\star g \in L^p([0,1[) \subset L^r([0,1[),~r\leq p$</li>
+		<li>Si $u \in \ell^1, v\in \ell^p$ alors $u \star v \in \ell^p \subset l^r, r\geq p$</li>
+	</ol>
+</div>
 </section>
 
+<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
+	<h2 id='coverh2'>V - Espace de Hilbert </h2>
+	</section>
+	<section>
+		<h1>Motivations et premières définition</h1>
+	Les espaces de Hilbert ont un nombre de propriétés remarquables permettant notamment 
+	d'avoir une intuition géométrique en définissant par exemple la notion d'orthogonalité proprement 
+	en dimension infinie. Ils sont également un pilier pour définir les séries de Fourier. 
+
+	<div class="exemple">
+		<div id="title">Définition [produit scalaire, produit hermitien]</div> 
+		Soit $E$ un $\mathbb{K}-$ev. L'application $<.\mid .>:E \times E \to \mathbb{K}$ est appelée un <b>produit scalaire</b> si $\mathbb{K}=\mathbb{R}$
+		ou <b>produit hermitien</b> si $\mathbb{K} = \mathbb{C}$ si
+		<ol>
+			<li>$\forall x \in E, y \mapsto < y \mid x >$ est linéaire</li>
+			<li>$\forall x,y \in E, < x \mid y > = \overline{< y \mid x >}$</li>
+			<li>$< x \mid x > \geq 0$</li>
+			<li>$< x \mid  x > =0 \implies x = 0$</li>
+		</ol>
+		<p>$(E, < . \mid . >)$ est appelé un <b>espace pré-hilbertien</b></p>
+	</div>
+		<ul>
+			<li> Si $\mathbb{K} = \mathbb{R}$ les propriétés $\text{(i., ii.)}$ nous donnent la linéarité p/r à la 2ème variable.</li>
+			<li>Si $\mathbb{K} = \mathbb{C}, < z \mid x + \lambda y > = < z \mid x > + \bar{\lambda} < z \mid y > \texttt{(sesqui-linéarité)}$</li>
+		</ul> 
+
+	</section>
+	<section>
+		<h1>Propriétés autour du produit scalaire</h1>
+		L'inégalité de Cauchy-Scwharz se généralise en dimension infinie 
+
+		<div class="exemple">
+			<div id="title">Proposition [Inégalité de Cauchy-Schwarz]</div> 
+			Pour tout $f,g \in E$ on a l'inégalité suivante : 
+			<center>
+				$$
+				\left| < f \mid g > \right|^2 \leq  < f \mid f > < g \mid g >
+				$$
+			</center>
+			On a égalité si $f,g$ sont colinéaires $f = ug, u \in \mathbb{K}$
+		</div>
+		<p><b>Preuve : </b> Au tableau</p>
+		<p>On a par conséquent une norme sur $E$.</p>
+
+		<div class="exemple">
+			<div id="title">Proposition [norme sur un espace pré-hilbertien]</div> 
+			Soit $(E, < . \mid . >)$ un espace pré-hilbertien. Alors : 
+			<center>
+				$$
+				\Vert x \Vert = \sqrt{< x \mid x >}
+				$$
+			</center>
+			est une norme sur $E$.
+			</div>
+			<p><b>Preuve : </b> Au tableau</p>
+			<p><b>Remarques :</b> Pythagore : $\underbrace{< f \mid g > =0}_{\text{orthogonaux}} \implies \Vert f +g \Vert ^2 = \Vert f \Vert^2 + \Vert g \Vert^2$</p>
+	</section>
+
+	<section>
+		<h1>Espace de Hilbert</h1>
+		<div class="exemple">
+			<div id="title">Définition [Espace de Hilbert]</div> 
+			Un espace pré-hilbertien $(E, < . \mid .>)$ est dit <b>espace de Hilbert</b> si 
+			$(E, \Vert . \Vert)$ est complet avec $\Vert x \Vert = \sqrt {< x \mid x >}$. 
+
+		</div>
+		<p>
+			<b>Exemples d'espace de Hilbert : </b>
+			<ul>
+				<li>$(\mathbb{R}^n, <. \mid . >_{\mathbb{R}^n}), (\mathbb{C}^n, <. \mid . >_{\mathbb{C}^n})$ de Hilbert avec
+					 $< x \mid y >_{\mathbb{R}^n} = \sum_{i=1}^{n}x_i y_i, < x \mid y >_{\mathbb{C}^n} = \sum_{i=1}^{n}x_i \overline{y_i}$ </li>
+				<li>$(L^2(\mathbb{R}^N), <. \mid . >_{L^2})$ avec $< f \mid g >_{L^2} = \int f(x) \overline{g(x)}dx$</li>
+				<li>$(\ell^2(\mathbb{N}), <. \mid .>_{\ell^2})$ car on peut plonger $\ell^2$
+					 via l'application $u(x) = u_n$  si $x \in [n, n+1[$ qui est un sous-espace fermé de $L^2(\mathbb{R})$. 
+					 On a donc $\ell^2(\mathbb{N})$ complet.
+
+				</li>
+			</ul>
+		</p>
+	
+	</section>
+
+	<section>
+		<h1>Théorème de Projection</h1>
+		on rappelle que $A \subset E$ avec $E$ un ev  est convexe si pour $x,y \in A, t\in [0,1], tx + (1-t)y \in A$
+		Le lecteur pourra également démontrer l'égalité suivante  utile dans la preuve du théorème de projection : 
+		<center>
+		$$
+		\Vert u \Vert^2 + \Vert v \Vert^2 = \frac{1}{2}(\Vert u + v \Vert ^2 + \Vert u + v \Vert ^2) \quad \texttt{(identité du parallélogramme)}
+		$$
+	</center>
+	<p></p>
+	<div class="exemple">
+		<div id="title"> Théorème [de la Projection]</div> 
+		Soit $(H, < . \mid . >)$ un espace de Hilbert et $C$ un convexe fermé non vide de $H$.
+		$\forall f \in C$ on note $d(f,C) = \underset{c \in C}{\inf} \Vert f -c \Vert$.
+
+		Pour tout $f \in H, \exists ! g \in C$ appellé <b>projection de $f$ sur $C$</b> telle que :
+		<center>
+			$$
+			\forall h \in C, d(f,C) =  \Vert f -g \Vert \leq \Vert f - h \Vert
+			$$
+		</center>
+
+		La projection se caracterise comme l'unique point $g\in C$ tel que 
+		<center>
+		$$
+		\forall h \in C, \Re\left(< f-g \mid h-g >\right) \leq 0
+		$$
+	</center>
+	Si $C$ est de plus un sev fermé de $H$, alors la projection $g \in C$ est unique et $f-g$ est orthogonal 
+	à tous les éléments de $C$.
+	</div>
+
+	<p><b>Preuve :</b> Au tableau</p>
+	</section>
+
+	<section>
+		<h1>Espace Orthogonal</h1>
+		<div class="exemple">
+			<div id="title"> Définition [Espace Orthogonal]</div> 
+			Pour un espace Hilbertien, on appelle orthogonal d'un sous-semble $A$ de $H$ (noté $A^\perp$) l'ensemble : 
+			<center>
+				$$
+				A^\perp = \{v \mid \forall f \in A, < v \mid f > = 0\}
+				$$
+			</center>
+		</div>
+		<p><b>Remarque :</b> $A^\perp$ est un ssev fermé de $H$</p>
+
+		<div class="exemple">
+			<div id="title"> Propriétés [Projeteur orthogonal sur s.e.v. fermé]</div> 
+			Si $F$ est un ssev fermé d'un espace de Hilbert $H$, on note $P_F$ le projecteur orthogonal sur $F$. On a les résultats suivants :
+			<ol>
+				<li>$P_F(f)$ est le seul point $g \in F$ tel que $f-g \in F^\perp$</li>
+				<li>$P_F$ est linéaire et $Im(P_F) = F$</li>
+				<li>$H = F \oplus F^\perp$ .ie. $\exists ! (g,h) \in F \times F^\perp, f=g +h$ avec de plus $g=P_F(f), h=f-P_F(f)$</li>
+				<li>$P_{F^\perp} = I_d - P_F$</li>
+				<li>$F^{\perp^\perp} = F$</li>
+			</ol>
+		</div>
+		<p><b>Preuve :</b> Au tableau</p>
+	</section>
+
+	<section>
+		<h1>Autre corollaires et théorème de Riesz</h1>
+		<div class="exemple">
+			<div id="title"> Corollaire </div> 
+			Si $A \subset H$ on a alors 
+			<center>
+				$$
+				A^\perp = \overline{\text{Vect} (A)^\perp}; 
+				(A^\perp)^\perp = \overline{\text{Vect} (A)}
+				$$
+			</center>
+		</div>
+		<p></p>
+		On peut définir maintenant la totalité d'un système dans un Hilbert.
+		<div class="exemple">
+			<div id="title"> Corollaire </div> 
+			On dira qu'un sous ensemble $A$ de H un Hilbert est <b> total</b>
+			si l'ev $\text{Vect}(A)$ engendré par $A$ est dense dans $H$. 
+			Pour que $A$ soit total dans $H$ il suffit que $A^\perp = \{0\}$
+		</div>
+		<p></p>
+		<div class="exemple">
+			<div id="title"> Théorème [de Riesz] </div> 
+			Pour tout $f \in H$, l'application $v\in H \mapsto < v \mid f >$ est une forme linéaire
+			continue sur $H$. Réciproquement, si $\tilde{f}$ est une FL continue sur H, $\exists ! f \in H$ tel que :
+			<center>
+				$$
+				\tilde{f}(v) = < v \mid f >
+				$$
+			</center>
+		</div>
+		<p><b>Preuve :</b> Au tableau.</p>
+	</section>
+	<section>
+		<h1>Universalité de la convolution</h1>
+		Le théorème suivant est "fondamental en traitement du signal". 
+		On dit d'abord qu'un opérateur $T$ agissant sur des fonctions est invariant par translation si 
+		<center>
+			$$
+			T(\mathscr{T}_x f) = \mathscr{T}_x(Tf)
+			$$
+		</center>
+
+		Avec $(C_b, \Vert . \Vert_\infty)$ on a le résultat suivant
+
+		<div class="exemple">
+			<div id="title"> Théorème [universalité de la convolution] </div> 
+			Soit $T:L^2(\mathbb{R}^N \to C_b(\mathbb{R}^n)$ un opérateur linéaire, invariant par translation et continu.
+			Alors $\exists g \in L^2(\mathbb{R}^N)$ telle que $T(f) = g \star f$
+		</div>
+		<p><b>Preuve :</b> Au tableau</p>
+	</section>
+
+	<section>
+		<h1>Convergence de série d'éléments orthogonaux</h1>
+		<div class="exemple">
+			<div id="title"> Proposition  </div> 
+			Si $\{x_n\}_n\in \mathbb{N}$ sont des vecteurs 2 à 2 orthogonaux dans un espace de Hilbert, alors
+			<center>
+				$$
+				\left(\sum_{n=0}^N x_n) \text{CV quand }N\to \infty \right) \Leftrightarrow \left(\sum \Vert x_n\Vert^2 < +\infty \right)
+				$$
+			</center>
+
+			Dans ces cas, toutes les séries $\sum_{n=0}^{N}x_{\sigma(n)}$ convergent vers la même limite quelque soit la permutation $\sigma \in \mathfrak{\Sigma}_n$
+		</div>
+		<p><b>Preuve :</b> Au tableau</p>
+	</section>
+
+	<section>
+		<h1>Base Hilbertienne</h1>
+		<div class="exemple">
+			<div id="title"> Définition [Base Hilbertienne] </div> 
+			Soit un espace de Hilbert séparable (i.e. il existe un sous-ensemble dénombrable dense). 
+			On ppelle <b>base hilbertienne</b> de $H$ un système orthonormé fini ou infini $(e_n)_{n\in\mathbb{N}}$ qui est total.
+			C'est à dire :
+			<center>
+				$$
+
+				(e_n)_{n\in\mathbb{N}} \text{ base hilibertienne } \Leftrightarrow 
+				\begin{cases}
+				< e_n \mid e_m > = \delta_{n,m} \\[5pt]
+				\overline{Vect((e_n))} = H
+				\end{cases}
+				$$
+			</center>
+		</div>
+		On a alors le résultat suivant : 
+
+				<div class="exemple">
+			<div id="title"> Théorème </div> 
+			Tout espace de Hilbert séparable admet une base hilbertienne.
+		</div>
+		<p><b>Preuve :</b> Au tableau. </p>
+	</section>
+
+	<section>
+		<h1>Egalité de Parseval</h1>
+		<div class="exemple">
+			<div id="title"> Théorème [Egalité de Parseval] </div> 
+			Soit $(H, < . \mid . >)$ un espace de Hilbert séprable et $(e_n)_{n \in \mathbb{N}}$
+			une base hilbertienne de $H$. Alors tout élément de $H$ peut s'écrire comme la 
+			somme d'une série convergente
+
+
+			<center>
+			$$
+			f = \sum_{n} < f \mid e_n > e_n = \sum_n c_n(f)e_n
+			$$
+		</center>
+
+			et les coordonnées $c_n(f) = < e_n \mid f >$ sur la base vérifient <b>l'égalité de Parseval</b>
+			<center>
+				$$
+				\Vert f \Vert^2 = \sum_{n} |c_n(f) |^2
+				$$
+			</center>
+			Réciproquement, si $c_n$ est une suite vérifiant $\sum_{n} |c_n|^2 < \infty, $ la série $\sum_n c_n e_n$ 
+			CV dans $H$ et sa somme $f$ vérfiie $c_n(f) = c_n$
+		</div>
+		<p><b>Remarques :</b>
+
+		<ul>
+			<li>Si $(e_n)_n$ est orthonormé quelconque de $H$ alors $\sum_n \| < e_n \mid f >|^2 \leq \Vert f \Vert^2$ (inégalité de Parseval)</li>
+			<li>Si l'inégalité est une égalité, alors $(e_n)_n$ est une base hilbertienne</li>
+			<li>Tout système orthonormé peut être complété en une base hilbertienne</li>
+			<li>Tout espace de Hilbert séparable est isométrique à $\ell^2(\mathbb{N})$</li>
+		</ul>
+		</p>
+	</section>
+
+	<section>
+		<h1>Séries de Fourier</h1>
+		<ul>
+			<li>Soit $L_p^2([0,1])$ les fonctions sur $\mathbb{R}$ à valeurs complexes ou réelles et $1$-périodiques.</li>
+			<li>On définit le produit scalaire $< f \mid g >= \int_{0}^1 f \bar{g}$</li>
+			<li>On voit assez rapidement que c'est bien un produit scalire</li>
+			<li>$L_p^2([0,1])$ est un espace de Hilbert (complétude venant de la complétudes des $L^p$)</li>
+			<li>Soit $\{e_k(x) = e^{2i\pi kx}\}_{k\in \mathbb{Z}}$ des éléments de $L_p^2([0,1])$</li>
+			<li>Cette famille est orthonormé et pour $f \in L^2_p([0,1])$ on note
+				<center> 
+				$$c_k(f) = < f \mid e_k > \quad \texttt{(coefficients de Fourier)}$$
+			</center>
+				</li>
+
+			On peut alors se demander quand $\sum c_k e_k$ convergent et comment. Le théorème suivant 
+			(la preuve sera vue dans le cours transformée de Fourier) nous permet de répondre à cette question
+
+			<div class="exemple">
+				<div id="title"> Théorème  </div> 
+				$\{e_k\}_{k\in \mathbb{Z}}$  est une base hilbertienne de $L^2_p([0,1])$
+			</div>
+		</ul>
+
+
+	</section>
+
+	<section>
+		<h1>Résultats et convolution circulaire</h1>
+		Par le théorème "égalité de Parseval" on a donc : 
+		<center>
+			$$
+			f = \sum_{k \in \mathbb{Z}} c_k(f) e_k \quad \texttt{(Série de Fourier)}
+			$$
+		</center>
+		qui converge au sens $L^2$ et l'égalité de Parseval permet d'écrire 
+		<center>
+			$$
+			\sum_{k \in \mathbb{Z}} |c_k(f)|^2 = \Vert f \Vert_{L^2_p([0,1])}^2
+			$$
+		</center>
+
+		On rappelle par ailleurs la convolution des fonctions $1$-périodiques 
+
+		<div class="exemple">
+			<div id="title"> Définition [convolution circulaire] </div> 
+			Si $f,g$ sont $1$-périodique on note $f \star_{c} g$ la convolution 
+			circulaire définie par (quand cela existe)
+			<center>
+				$$
+				(f \star_c g) (x) = \int_{0}^{1} f(t)g(x-t)dt
+				$$
+			</center>
+			On remarque que cette fonction est $1$-périodique.
+		</div>
+	</section>
+
+	<section>
+		<h1>Résultats sur la convolution circulaire</h1>
+		<ul>
+			<li>La convolution circulaire de deux fonctions $L_p^2$ est $L^\infty$ et continue</li>
+			<li>la convolution circulaire de deux fonctions $L^2_p$ est $L^2_p$</li>
+			<li>La convolution circulaire est une application bilinéaire continue de $L_p^2 \times L_p^2$ dans $L_p^2$. Par ailleurs :
+				<center>
+					$$
+					\Vert f \star_{c} g \Vert_2 \leq \Vert f\Vert_2 \Vert g \Vert_2
+					$$
+				</center>
+			</li>
+		</ul>
+		On a par ailleurs la formule suivante 
+		<div class="exemple">
+			<div id="title"> Proposition  </div> 
+			Si $f,g$ sont dans $L_p^2([0,1])$ alors :<br>
+			<ol>
+				<li>$c_n(f \star_c g) = c_n(f)c_n(g)$</li>
+				<li>$c_n(fg) = \sum_{k}c_k(f) c_{n-k}(g)$</li>
+			</ol>
+		</div>
+	</section>
+
+	<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
+		<h2 id='coverh2'>VI - Transformée de Fourier sur $\mathbb{R}$ </h2>
+		</section>
+
+	
+		<section>
+			<h1>Résultats et convolution circulaire</h1>
+			Par le théorème "égalité de Parseval" on a donc : 
+			<center>
+				$$
+				f = \sum_{k \in \mathbb{Z}} c_k(f) e_k \quad \texttt{(Série de Fourier)}
+				$$
+			</center>
+			qui converge au sens $L^2$ et l'égalité de Parseval permet d'écrire 
+			<center>
+				$$
+				\sum_{k \in \mathbb{Z}} |c_k(f)|^2 = \Vert f \Vert_{L^2_p([0,1])}^2
+				$$
+			</center>
+	
+			On rappelle par ailleurs la convolution des fonctions $1$-périodiques 
+	
+			<div class="exemple">
+				<div id="title"> Définition [convolution circulaire] </div> 
+				Si $f,g$ sont $1$-périodique on note $f \star_{c} g$ la convolution 
+				circulaire définie par (quand cela existe)
+				<center>
+					$$
+					(f \star_c g) (x) = \int_{0}^{1} f(t)g(x-t)dt
+					$$
+				</center>
+				On remarque que cette fonction est $1$-périodique.
+			</div>
+		</section>	
 </div>
 
 <div class='footer'>
 	<img src="css/theme/img/logo-Telecom.svg" alt="Logo"/>
 	<div id="middlebox">Analyse - FMA_3TC10</div>
-	<ul>
-	</ul>
 </div>
 			</div>
 
