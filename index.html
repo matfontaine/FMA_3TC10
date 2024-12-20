@@ -1063,7 +1063,7 @@
 					<li> $\phi:U\to V$ des vouverts est un $\mathcal{C}^1-$difféomorphisme si $\phi$ est bijective, continuement dérivable et son inverse l'est aussi.</li>
 					<li> En définissant $J_{\phi}$ la jacobienne de $\phi$ on a le théorème du changement de variable pour $f:V \to \mathbb{R}$ borélienne : 
 						$$
-						\int_U f\circ\phi = \int_V \frac{f}{|J_{\phi} \circ \phi^{-1}|}
+						\int_U f\circ\phi = \int_V \frac{f}{|J_{\phi} \circ \phi^{-1}|np}
 						$$
 					</li>
 				</ul>
@@ -1785,20 +1785,229 @@ On a les règles de calculs suivantes :
 			<h1>Transformée de Fourier sur $L^1$</h1>
 			<div class="exemple">
 				<div id="title">Définition [transformée de Fourier dans $L^1$] </div> 
-				Soit $f \in L^1$, on appelle <b>transformée de Fourier de $f$</b>, que l'on note $\hat{f}$ (ou $\mathscr{F}(f)$) 
+				Soit $f \in L^1$, on appelle <b>transformée de Fourier (TF) de $f$</b>, que l'on note $\hat{f}$ (ou $\mathscr{F}(f)$) 
 				la fonction définie par 
 				<center>
 					$$
-					\forall xi \in \mathbb{R}, \hat{f}(\xi) = \int f(x) e^{-2i\pi\xi.x} dx
+					\forall \xi \in \mathbb{R}, \hat{f}(\xi) = \int f(x) e^{-2i\pi\xi.x} dx
 					$$
 				</center>
 
 			</div>
-			<p><b>Remarques :</b>
-			$\hat{f}$ est le produit d'une fonction bornée par une fonction $L^1$
+			<p><b>Remarque :</b>
+			$\hat{f}$ est le produit d'une fonction bornée par une fonction $L^1$ donc par l'inégalité de Hölder, on a une fonction $L^1$.
 			</p>
 		</section>
-</div>
+
+
+		<section>
+			<h1>Premiers résultats élémentaires</h1>
+
+			On a les résultats suivants : 
+			<div class="exemple">
+				<div id="title">Propriétés [sur la TF dans $L^1$] </div> 
+				Soient $f,g\in L^1$ et $\lambda, \alpha \in \mathbb{R}$
+				<ol>
+					<li>$\hat{f}$ est bornée par $\Vert f\Vert_1$ ($\Vert \hat{f} \Vert_\infty \leq \Vert f \Vert_1$). 
+						Comme $\hat{f}$ est linéaire, elle est continue de $L^1$ dans $L^\infty$
+					</li>
+					<li>
+						$\hat{f}$ est continue
+					</li>
+
+					<li>
+						$\hat{f}(\xi) \underset{|\xi| \to +\infty}{\to} 0$
+					</li>
+					<li>
+						$\mathscr{F}(f\star g) = \hat{f}.\hat{g}$
+					</li>
+					<li>$\int\hat{f}g = \int f\hat{g}$</li>
+					<li>Si $g(x) = f(x)e^{2i\pi\alpha.x}$ alors $\hat{g}(\xi) = \hat{f}(\xi - \alpha)$</li>
+					<li>Si $g(x) = f(x-\alpha)$ alors $\hat{g}(\xi) = \hat{f}(\xi)e^{-2i\pi\alpha\xi}$</li>
+					<li>Si $g(x) = \overline{f(-x)}$ alors $\hat{g}(\xi) = \overline{\hat{f}(\xi)}$</li>
+					<li>Si $g(x) = f(x/\lambda)$ avec $\lambda >0$ alors $\hat{g}(\xi) = \lambda \hat{f}(\lambda\xi)$</li>
+				</ol>
+				
+			</div>
+			<p><b>Preuve :</b> de $(i)$ à $(v)$ le reste à essayer soit même.
+			
+			</p>
+		</section>
+
+		<section>
+			<h1>Unité Approchée </h1>
+			<p><b>Exercice :</b> Montrer que la convolution dans $L^1$ n'admet pas d'unité</p>
+
+			Nous alons définir une "unité approchée". On définit pour $n\in \mathbb{N}^\star$ les fonctions
+			<center>
+				$$
+				H_n(x) = e^{-\frac{x}{n}} \qquad; h_n(x) = n\frac{2}{1+4\pi^2(nx)^2}
+				$$
+
+			</center>
+			$H_n$ est une homothétie de $H_1 (H_n(nx) = H_1(x))$ et que $h_n(x) = nh_1(nx)$
+			<div class="exemple">
+				<div id="title">Propriétés [sur les fonctions $H_n$] </div> 
+				On a alors les propriétés suivantes
+				<ol>
+					<li>$\forall n \geq 1, \forall p \in [1, +\infty], h_n\in L^p, H_n\in L^p$
+					</li>
+					<li>
+						$\mathscr{F}(H_n) = h_n$
+					</li>
+
+					<li>
+						$\int h_n(t)dt = 1$
+					</li>
+					<li>
+						Si $f \in L^p, p \in [1, +\infty[, h_n \star f \underset{L^p}{\to} f$
+					</li>
+					<li>Si $f \in L^1$ alors 
+						
+							$
+							\forall x \in \mathbb{R}, (f \star h_n)(x) = \int \hat{f}(\xi)H_n(\xi)e^{2i\pi x.\xi}d\xi
+							$
+						
+					</li>
+					<li>Si $f$ est bornée et continue en un point $x$ alors $f \star h_n(x) \underset{n \to \infty}{\to} f(x)$</li>
+				
+				</ol>
+				
+			</div>
+			<p><b>Preuve :</b> Au tableau</p>
+		</section>
+
+		<section>
+			<h1>Théorème d'inversion</h1>
+			<div class="exemple">
+				<div id="title">Définition [transformée de Fourier inverse] </div> 
+				Pour $f\in L^1$ on note $\overline{\mathscr{F}}(f)$ la <b>TF inverse</b> la fonction (continue)
+				définie par :
+				<center>
+					$$
+					\overline{\mathscr{F}}(f)(x) = \int f(t)e^{2i\pi x.t}dt
+					$$
+				</center>
+			</div>
+			<p>On a alors le résultat suivant :
+			</p>
+
+			<div class="exemple">
+				<div id="title">Théorème [d'inversion] </div> 
+				Si on a $f \in L^1$ et $\hat{f} \in L^1$ alors pour presque tout $x$
+				$\overline{\mathscr{F}}(\mathscr{F}(f))(x) = f(x) $. Comme on a une égalité presque partout on écrit souvent :
+				<center>
+					$$
+					\overline{\mathscr{F}}(\mathscr{F}(f)) = f
+					$$
+				</center>
+				(en faisant attention qu'on parle d'une égalité dans $L^1$). On en déduit par ailleurs que si $\hat{f} \in L^1$
+				alors $f$ est égale presque partout à ue fonction continue.
+			</div>
+			<p><b>Remarque :</b> La transformée de Fourier est injective</p>
+		</section>
+
+		<section>
+			<h1>Extension de la transformée de Fourier à $L^2$</h1>
+			<div class="exemple">
+				<div id="title">Théorème [dans $L^2$] </div> 
+				On a :
+				<ol>
+					<li>si $f \in L^1 \cap L^2$ alors $\mathscr{F}(f) \in L^2$ et $\Vert \mathscr{F}(f) \Vert_2 = \Vert f\Vert_2$</li>
+					<li>$\exists ! $ AL continue $L^2 \to L^2$ qui est une isométrie égale à $\mathscr{F}$ sur $L^1 \cap L^2$
+						On la notera de nouveau $\mathscr{F}$.</li>
+					<li>$\mathrm{Im}(\mathscr{F})$ est dense dans $L^2$</li>
+					<li>$\mathscr{F}$ est bijective de $L^2$ dans lui-même</li>
+				</ol>
+			</div>
+			<p><b>Preuve :</b> Au tableau</p>
+		</section>
+		<section>
+			<h1>TF inverse dans $L^2$</h1>
+			<div class="exemple">
+				<div id="title">Proposition [inverse dans $L^2$] </div> 
+				$\overline{\mathscr{F}}$ s'étend à $L^2$ de la même manière que la TF.
+				On a de plus les résultats suivant : 
+				<ol>
+					<li>$\forall f \in L^2, \overline\mathscr{F}(\mathscr{F}(f)) = f$</li>
+					<li>$\forall f, g \in L^2, f\star g = \overline{\mathscr{F}}(\hat{f}.\hat{g})$</li>
+				</ol>
+			</div>
+			<p><b>Preuve : </b> Au tableau</p>
+		</section>
+		<section>
+			<h1>Fourier sur $L([0,1[)$</h1>
+			On notera ici $L^p$ pour $L^1([0,1[)$. On rappelle que continue en $[0,1[$ veut dire continue au sens classique sur $[0,1[$ et ayant une 
+			limite en $1$ égale à la valeur en $0$. Plus loin la notation $\int$ signifira $\int_{0}^{1}$.
+
+			<div class="exemple">
+				<div id="title">Definition [TF sur $L^1$] </div> 
+				Pour $f \in L^1$ la <b>TF de $f$</b> est définie sur $\mathbb{Z}$ par 
+				<center>
+					$$
+					\forall \xi \in \mathbb{Z}, \hat{f}(\xi) = \int f(x) e^{-2i\pi .x}dx
+					$$
+				</center>
+				$\hat{f}$ est bien en tout point comme prod. d'une fonction bornée et d'une fonction dans $L^1$. On pourrait noter $\hat{f}_n$ au passage.
+			</div>
+			<p><b>Remarques : </b> on a les mêmes résultats que la prop 5.2. sauf le point 5 $(\int \hat{f}g = \int f{g})$ et le point 9 (car $\xi \in \mathbb{Z}$)</p>
+
+		</section>
+		<section>
+		<h1>Noyau de Fejér et inversion</h1>
+
+		Les fonctions $h_n, H_n$ sont remplacées par : 
+		<center>
+			$$
+			g_n(t) = \frac{1}{n}\sum_{k=0}^{n-1}\sum_{l=-k}^{k}e^{2i \pi l.t} = \sum_{m=-n+1}^{n-1} \frac{n-|m|}{n}e^{2i\pi m.t}  \qquad \texttt{(Noyau de Fejér)}
+			$$
+			$$
+			G_n(m) = 
+			\begin{cases}
+			0 & \text{si } |m| \geq m \\
+			\frac{n-|m|}{n} & \text{si } |m| \leq n-1
+			\end{cases}
+			$$
+		</center>
+
+		On a alors des propriétés assez similaires comme dans $L^1$ et également 
+		<div class="exemple">
+			<div id="title">Théorème [d'inversion de la TF sur $L^1$] </div> 
+			On définit la transformée de Fourier inverse pour une suite $f \in \ell^1$ par 
+			<center>
+				$$
+				\overline{\mathscr{F}}(f)(x) = \sum_{k \in \mathbb{Z}} f(k)e^{2i\pi x .k}
+				$$
+			</center>
+
+			Si $f \in L^1$ et $\hat{f} \in \ell^1$ alors pour presque tout $x \in [0,1[, \overline{\mathscr{F}}(\hat{f})(x) = f(x)$ 
+			C'est à dire on écrit : 
+
+			<center>
+				$$
+				\overline{\mathscr{F}}(\mathscr{F}(f)) = f
+				$$
+			</center>
+			On en déduit aussi que si $\hat{f} \in L^1$ alors $f$ est égale presque partout à une fonction continue. On en déduit aussi l'injectivité de la fonction
+		</div>
+	</section>
+
+	<section>
+		<h1>Extension dans $L^2$</h1>
+
+		<div class="exemple">
+			<div id="title">Théorème [Extension dans $L^2$] </div> 
+			On a les propriétés suivantes : 
+			<ol>
+				<li>Si $f \in L^2 (\subset L^1)$ alors $\mathscr{F}(f) \in \ell^2$ et $\Vert \mathscr{F}(f) \Vert_2 = \Vert f \Vert_2$</li>
+				<li>$Im(\mathscr{F})$ est dense dans $\ell^2$</li>
+				<li>$\mathscr{F}$ est bijective de $L^2$ dans $\ell^2$</li>
+				<li>Les polynômes trigonométriques sur $[0,1[$ sont denses dans $L^2$</li>
+			</ol>
+		</div>
+	</section>
+	</div>
+
 
 <div class='footer'>
 	<img src="css/theme/img/logo-Telecom.svg" alt="Logo"/>
