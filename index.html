@@ -2006,6 +2006,89 @@ On a les règles de calculs suivantes :
 			</ol>
 		</div>
 	</section>
+
+	<section class="cover" data-background="figures/background.png" data-state="no-title-footer no-progressbar has-dark-background">
+		<h2 id='coverh2'>VII - Espace de Schwartz </h2>
+		</section>
+	<section>
+		<h1>Motivations</h1>
+		On cherche un espace de fonction pour lequel les transformées de Fourier sont toujours dans cet espace mais également qui admet
+		plusieurs propriétés remarquables de décroissances rapides et d'autres propriétés importantes utiles en analyse.
+	</section>
+
+	<section>
+		<h1>Les fonctions $\mathcal{C}_c^{\infty}$</h1>
+		<div class="exemple">
+			<div id="title">Définition [Espace $\mathcal{C}_c^{\infty}$] </div> 
+			L'ensemble $\mathcal{C}_c^{\infty}$ est celui des fonctions indéfiniment dérivables et qui sont à support compact. C'est un $\mathbb{C}$-ev.
+		</div>
+		<p><b>Remarque : </b> $\mathcal{C}_c^{\infty}$ n'est pas réduit à la fonction nulle</p>
+		On définit avec $\rho = e^{-\frac{1}{x}}e^{-\frac{1}{1-x}}\mathbb{1}_{\mathbb{R}^+}(x) \mathbb{1}_{\mathbb{R}^+}(1- x)$ la suite : 
+		<center>
+			$\rho_n(x) = n \frac{\rho(nx)}{\int \rho} $
+		</center>
+
+		<div class="exemple">
+			<div id="title">Théorème [densité des $\mathcal{C}_c^\infty$ dans $L^p$ ] </div> 
+			Soit $p\in [1, +\infty[$ : 
+			<ol>
+				<li>Si $g \in \mathcal{C}_c^0, h \in \mathcal{C}_c^\infty$ alors $g \star h$ est dans $ \mathcal{C}_c^\infty$
+					et $(g\star h)^{(n)} ) = (g \star h^{(n)})$
+				</li>
+				<li>
+					$\forall f \in L^p, f\star \rho_n \overset{L^p}{\to} f$
+				</li>
+				<li>
+					Les $\mathcal{C}_c^\infty$ sont denses dans $L^p$
+				</li>
+			</ol>
+		</div>
+		<p><b>Preuve : </b> Au tableau</p>
+
+	</section>
+
+	<section>
+		<h1>Echange de régularité et de décroissance à l'infini</h1>
+		<div class="exemple">
+			<div id="title">Théorème  </div> 
+			On a les résultats suivants : <br>
+			<ol>
+				<li>Si $f\in \mathcal{C}^1\cap L^1$ et $f^\prime \in L^1$ alors 
+					<center>
+					$$
+					\mathcal{F}(f^\prime)(\xi) = 2i\pi \xi\hat{f}(\xi)
+					$$
+				</center>
+				</li>
+				<li>
+					Si $f\in \mathcal{C}^1\cap L^1$ et $x\mapsto xf(x) \in L^1$ alors $\hat{f}$ est continuement dérivable et
+					<center>
+						$$
+						\mathcal{F}(f)^\prime = \mathcal{F}(x\mapsto -2i\pi xf(x))
+						$$
+					</center>
+				</li>
+
+				<li>
+					Si $f \in \mathcal{C}^n \cap L^1$ et que $f^(k) \in L^1$ pour tout $k \leq n$ alors
+					<center>
+						$$
+						\mathcal{F}(f^{(n)})(\xi) = (-2i\pi x)^n\hat{f}(\xi)
+						$$
+					</center>
+				</li>
+				<li>
+					Si $f \in L^1$ et $(x \mapsto x^kf(x)) \in L^1$ pour tout $k \leq n$ alors $\hat{f}$ est $n$ fois continûment dérivable et 
+					<center>
+					$$
+					\mathcal{F}(f)^{(n)} = \mathcal{F}(x\mapsto (-2i\pi x)^nf(x))
+					$$
+				</center>
+				</li>
+			</ol>
+		</div>
+	<p><b>Preuve : </b> Au tableau</p>
+	</section>
 	</div>
 
 
