@@ -2073,7 +2073,7 @@ On a les règles de calculs suivantes :
 					Si $f \in \mathcal{C}^n \cap L^1$ et que $f^(k) \in L^1$ pour tout $k \leq n$ alors
 					<center>
 						$$
-						\mathcal{F}(f^{(n)})(\xi) = (-2i\pi x)^n\hat{f}(\xi)
+						\mathcal{F}(f^{(n)})(\xi) = (2i\pi \xi)^n\hat{f}(\xi)
 						$$
 					</center>
 				</li>
@@ -2088,6 +2088,73 @@ On a les règles de calculs suivantes :
 			</ol>
 		</div>
 	<p><b>Preuve : </b> Au tableau</p>
+	</section>
+
+	<section>
+		<h1>L'ensemble $\mathcal{S}$</h1>
+		Le résultat précédent montre que $f, \mathcal{F}(f)$ dans la même classe nécessite une certaine régularité sur $f$ qui sera alors 
+		valable pour $\mathcal{F}(f)$. 
+
+		<div class="exemple">
+			<div id="title">Définition [La classe $\mathcal{S}$ ] </div> 
+			On dit que $f$ est dans la classe de Schwartz et on note $f \in \mathcal{S}$ si
+			<ol>
+				<li>$f \in \mathcal{C}^\infty$
+				</li>
+				<li>
+					$\forall n,k \in \mathbb{N}, f^{(n)}x^k \underset{|x| \to \infty}{\to} 0$
+				</li>
+			</ol>
+		</div>
+
+		<p>On a les premières propriétés élémentaires suivantes :</p>
+		<div class="exemple">
+			<div id="title">Propriétés </div> 
+			Soit $f,g \in \mathcal{S}$ et $P$ un polynôme à une variable. Alors :
+			<ol>
+				<li>$f^{(n)} \in \mathcal{S}$
+				</li>
+				<li>
+					$fg \in \mathcal{S}$
+				</li>
+				<li>
+					$Pf \in \mathcal{S}$
+				</li>
+				<li>
+					$f \in L^p, \forall p \in [1,+\infty]$
+				</li>
+				<li>
+					$\mathcal{C}_c^{\infty} \subset S$ ($S$ est alors dense dans les $L^p, p \in [1, +\infty[$)
+				</li>
+			</ol>
+		</div>
+	</section>
+
+	<section>
+		<h1>Théorème sur $\mathcal{S}$</h1>
+		Les théorèmes suivants permettent d'affirmer la caractérisation de $f$ et sa TF voulue.
+		<div class="exemple">
+			<div id="title">Théorème </div> 
+			Si $f \in \mathcal{S}$ alors $\hat{f} \in \mathcal{S}$. De plus, La TF est une bijection entre $\mathcal{S}$ et lui-même. 
+			Son inverse est $\overline{\mathcal{F}}$.  
+		</div>
+	
+		<p><b>Preuve :</b> Au tableau</p>
+	</section>
+	<section>
+		<h1>Théorème d'échantillonnage sur $\mathcal{S}$</h1>
+		Il est naturel de se demander à partir d'un échantillonnage discret d'un signal, quelles conditions faire pour reconstruire sa version continue parfaitement ? C'est ce que nous affirme le théorème d'échantillonnage ci-après. 
+		<div class="exemple">
+			<div id="title">Théorème  [d'échantillonnage sur $\mathcal{S}$]</div> 
+			Si $f \in \mathcal{S}$ et que par ailleurs $\mathrm{supp}(\hat{f}) \subset [0, 1[$ alors on a la relation suivante :
+			<center>
+				$$
+				f(x) = \sum_{k \in \mathbb{Z}} f(k) \mathrm{sinc}(x-k)
+				$$
+			</center>  
+			
+		</div>
+	On peut donc reconstruire un signal analogique à partir d'un signal numérique si le spectre est définie sur un intervalle de longueur 1. 
 	</section>
 	</div>
 
